@@ -184,6 +184,8 @@ ETAPES = [
 ]
 # Textes pour les commerces (pas de « chantier » ni de visite sur place)
 COMMERCE = {
+    "cta": "Passer commande", "cta_form": "Envoyer ma demande", "titre_contact": "Nous contacter",
+    "intro_contact": "Appelez-nous ou laissez un message, on vous répond rapidement.",
     "surtitre_galerie": "En images", "titre_galerie": "Un aperçu de la maison",
     "intro_galerie": "La boutique, l'équipe et ce qu'on prépare chaque jour à {ville}.",
     "titre_etapes": "Commander, c'est simple",
@@ -195,7 +197,8 @@ COMMERCE = {
 }
 for _cle in ("boulangerie", "restaurant", "beaute"):
     METIERS[_cle].update({k: v for k, v in COMMERCE.items() if k not in METIERS[_cle]})
-METIERS["beaute"].update({"titre_etapes": "Prendre rendez-vous", "titre_galerie": "Le salon en images",
+METIERS["restaurant"].update({"cta": "Commander ou réserver"})
+METIERS["beaute"].update({"cta": "Prendre rendez-vous", "titre_etapes": "Prendre rendez-vous", "titre_galerie": "Le salon en images",
                           "etapes": [("Vous appelez", "On trouve ensemble le créneau qui vous convient."),
                                      ("On vous conseille", "Un vrai temps d'échange avant chaque prestation."),
                                      ("Vous repartez ravie", "Avec des conseils pour garder le résultat longtemps.")]})
@@ -310,6 +313,10 @@ def construire(infos, config, code, photos_relatives, apercu=True):
         "TITRE_GALERIE": e(m.get("titre_galerie", "Quelques chantiers récents")),
         "INTRO_GALERIE": e(m.get("intro_galerie", "Des photos de nos interventions autour de {ville}.").format(ville=ville)),
         "TITRE_ETAPES": e(m.get("titre_etapes", "De votre appel à la fin du chantier")),
+        "CTA": e(m.get("cta", "Demander un devis gratuit")),
+        "CTA_FORM": e(m.get("cta_form", "Envoyer ma demande de devis")),
+        "TITRE_CONTACT": e(m.get("titre_contact", "Parlons de votre projet")),
+        "INTRO_CONTACT": e(m.get("intro_contact", "Réponse rapide, devis gratuit et sans engagement.")),
         "LIGNE_ADRESSE": lignes_adresse,
         "LIGNE_DIRIGEANT": lignes_dirigeant,
         "OPTIONS_DEVIS": "".join("<option>%s</option>" % e(o) for o in m["options"]),
