@@ -61,7 +61,11 @@ section { padding-block: clamp(4rem, 9vw, 7rem); }
 
 .tarifs { background: var(--noir); color: var(--ivoire); }
 .tarifs h2 { font-size: clamp(3rem, 8vw, 6rem); }
-.colonnes { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem 4rem; margin-top: 2.6rem; }
+.colonnes { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2.4rem 3rem; margin-top: 2.6rem; align-items: start; }
+@media (max-width: 980px) { .colonnes { grid-template-columns: 1fr 1fr; } .colonnes .groupe:last-child { grid-column: 1 / -1; } }
+@media (max-width: 620px) { .colonnes { grid-template-columns: 1fr; } }
+.colonnes .groupe { min-width: 0; }
+.colonnes dt { min-width: 0; }
 .colonnes h3 { font-size: 2rem; color: var(--poudre); padding-bottom: .8rem; border-bottom: 1px solid #3b3735; margin-bottom: .4rem; }
 .colonnes dl { margin: 0; }
 .colonnes dl > div { display: flex; justify-content: space-between; gap: 1rem; padding: .75rem 0; border-bottom: 1px solid #2b2827; font-variant-numeric: tabular-nums; }
@@ -137,7 +141,7 @@ footer .cadre { display: flex; justify-content: space-between; flex-wrap: wrap; 
     <div class="cadre">
       <h2>Tarifs</h2>
       <div class="colonnes">
-        <div>
+        <div class="groupe">
           <h3>Femme</h3>
           <dl>
             <div><dt>Shampoing, coupe, brushing</dt><dd>48 €</dd></div>
@@ -147,16 +151,20 @@ footer .cadre { display: flex; justify-content: space-between; flex-wrap: wrap; 
             <div><dt>Soin profond</dt><dd>18 €</dd></div>
           </dl>
         </div>
-        <div>
+        <div class="groupe">
           <h3>Homme & enfant</h3>
           <dl>
             <div><dt>Coupe homme</dt><dd>26 €</dd></div>
             <div><dt>Coupe et taille de barbe</dt><dd>34 €</dd></div>
-            <div><dt>Enfant (moins de 12 ans)</dt><dd>16 €</dd></div>
+            <div><dt>Coupe enfant, moins de 12 ans</dt><dd>16 €</dd></div>
           </dl>
-          <h3 style="margin-top:2rem">Événements</h3>
+        </div>
+        <div class="groupe">
+          <h3>Mariage</h3>
           <dl>
-            <div><dt>Coiffure de mariée, essai compris</dt><dd>dès 120 €</dd></div>
+            <div><dt>Essai coiffure</dt><dd>45 €</dd></div>
+            <div><dt>Coiffure de mariée</dt><dd>dès 120 €</dd></div>
+            <div><dt>Invitée</dt><dd>dès 40 €</dd></div>
           </dl>
         </div>
       </div>
