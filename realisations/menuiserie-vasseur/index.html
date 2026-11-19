@@ -47,7 +47,12 @@ nav .tel { border: 1px solid var(--chene); padding: .5rem 1rem; border-radius: 9
 .bouton.ligne { border: 1px solid #5a5148; }
 .indice { position: absolute; right: max(20px, env(safe-area-inset-right, 0px)); bottom: 2rem; z-index: 2; font-size: .8rem; color: var(--gris); letter-spacing: .08em; }
 .indice::before { content: "↻ "; color: var(--chene); }
-@media (max-width: 700px) { .accroche { min-height: 640px; } .indice { display: none; } }
+@media (max-width: 700px) {
+  .accroche { min-height: 0; }
+  #scene { inset: 70px 0 auto; height: 340px; }
+  .accroche .cadre { padding-top: 400px; }
+  .indice { display: block; top: 380px; bottom: auto; }
+}
 
 section { padding-block: clamp(4rem, 9vw, 7rem); }
 .savoir { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(2rem, 6vw, 5rem); align-items: center; }
@@ -269,9 +274,10 @@ document.getElementById("f").addEventListener("submit", function (e) { e.prevent
     var w = canvas.clientWidth, h = canvas.clientHeight;
     renderer.setSize(w, h, false); camera.aspect = w / h;
     var etroit = w < 700;
-    camera.position.set(etroit ? 0 : -2.2, etroit ? 3.2 : 1.6, etroit ? 13 : 10.5);
-    camera.lookAt(etroit ? 0 : -1.4, etroit ? 1.6 : 0.2, 0);
-    pivot.position.x = etroit ? 0.3 : 2.4;
+    camera.position.set(etroit ? 0 : -2.2, etroit ? 2.4 : 1.6, etroit ? 12 : 10.5);
+    camera.lookAt(0, etroit ? 0.4 : 0.2, 0);
+    if (!etroit) camera.lookAt(-1.4, 0.2, 0);
+    pivot.position.x = etroit ? 0 : 2.4;
     camera.updateProjectionMatrix();
   }
   window.addEventListener("resize", cadrer); cadrer();
