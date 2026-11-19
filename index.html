@@ -459,11 +459,10 @@ footer a { color: var(--encre); }
         <div class="titre-section" style="margin:0">
           <span class="surtitre">Contact</span>
           <h2>Parlons de votre site</h2>
-          <p>Laissez-moi vos coordonnées, je vous rappelle dans la journée.</p>
+          <p>Laissez-moi vos coordonnées, je vous recontacte dans la journée.</p>
         </div>
         <dl>
-          <div><dt>Téléphone</dt><dd><a class="numero" href="tel:+33600000000">06 00 00 00 00</a></dd></div>
-          <div><dt>E-mail</dt><dd>contact@robjill.fr</dd></div>
+          <div><dt>E-mail</dt><dd><a class="numero" style="font-size:clamp(1rem,3vw,1.3rem);word-break:break-all" href="mailto:thesinkiisinki@gmail.com">thesinkiisinki@gmail.com</a></dd></div>
           <div><dt>Zone</dt><dd>Normandie, et partout en France à distance</dd></div>
         </dl>
       </div>
@@ -478,7 +477,7 @@ footer a { color: var(--encre); }
         </div>
         <label for="c-message">Votre activité en quelques mots<textarea id="c-message" placeholder="Ex. : paysagiste à Rouen, j'ai une fiche Google mais pas de site."></textarea></label>
         <button class="bouton bouton-orange" type="submit">Envoyer ma demande</button>
-        <p class="ok" id="c-ok" hidden>Votre messagerie s'ouvre avec la demande prête à envoyer. Si rien ne s'ouvre, appelez directement le 06 00 00 00 00.</p>
+        <p class="ok" id="c-ok" hidden>Votre messagerie s'ouvre avec la demande prête à envoyer. Si rien ne s'ouvre, écrivez directement à thesinkiisinki@gmail.com.</p>
       </form>
     </div>
   </section>
@@ -528,7 +527,7 @@ footer a { color: var(--encre); }
     var corps = "Nom : " + v("c-nom") + "\nTéléphone : " + v("c-tel") + "\nEntreprise : " + v("c-entreprise") +
                 "\nFormule : " + v("c-formule") + "\n\n" + v("c-message");
     document.getElementById("c-ok").hidden = false;
-    location.href = "mailto:contact@robjill.fr?subject=" + encodeURIComponent("Demande de site internet") + "&body=" + encodeURIComponent(corps);
+    location.href = "mailto:thesinkiisinki@gmail.com?subject=" + encodeURIComponent("Demande de site internet") + "&body=" + encodeURIComponent(corps);
   });
 })();
 </script>

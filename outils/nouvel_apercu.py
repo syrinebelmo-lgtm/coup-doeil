@@ -28,6 +28,7 @@ import secrets
 import shutil
 import subprocess
 import sys
+import urllib.parse
 
 RACINE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 MODELE = os.path.join(RACINE, "outils", "modele_site.html")
@@ -277,6 +278,16 @@ def construire(infos, config, code, photos_relatives, apercu=True):
             '<button type="button" id="fermer-apercu">Masquer</button></span>'
             '</div></aside>'
         ) % e(config["marque"])
+    elif apercu and not config.get("telephone_vendeur"):
+        sujet = urllib.parse.quote("Mon site %s" % infos["nom"])
+        bandeau = (
+            '<aside class="apercu" aria-label="Aperçu privé"><div class="cadre">'
+            '<span><strong>Aperçu privé</strong> préparé pour %s par %s · %s %s</span>'
+            '<span class="liens"><a href="mailto:%s?subject=%s">Ce site me plaît</a>'
+            '<button type="button" id="fermer-apercu">Masquer</button></span>'
+            '</div></aside>'
+        ) % (e(infos["nom"]), e(config["marque"]), e(config["prix_site"]), e(config.get("abonnement", "")),
+             e(config["email_vendeur"]), sujet)
     elif apercu:
         lien_sms = "sms:%s" % re.sub(r"[^\d+]", "", config["telephone_vendeur"])
         bandeau = (
