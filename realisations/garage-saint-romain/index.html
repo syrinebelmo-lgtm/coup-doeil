@@ -44,8 +44,8 @@ header.nav .cadre { display: flex; justify-content: space-between; align-items: 
 .accroche { display: grid; grid-template-columns: 1fr 1fr; min-height: 560px; background: var(--blanc); }
 @media (max-width: 860px) { .accroche { grid-template-columns: 1fr; } }
 .accroche .texte { padding: clamp(2.5rem, 6vw, 4.5rem) max(20px, env(safe-area-inset-left, 0px)) clamp(2.5rem, 6vw, 4rem) max(20px, calc((100vw - 1200px) / 2 + 20px)); display: grid; align-content: center; gap: 1.2rem; }
-.accroche h1 { font-size: clamp(3.2rem, 8vw, 6.4rem); }
-.accroche h1 span { background: var(--jaune); padding: 0 .15em; }
+.accroche h1 { font-size: clamp(3.2rem, 8vw, 6.4rem); line-height: 1.12; }
+.accroche h1 span { background: var(--jaune); padding: 0 .15em; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
 .accroche p { margin: 0; color: var(--gris); max-width: 40ch; font-size: 1.1rem; }
 .accroche .boutons { display: flex; gap: .8rem; flex-wrap: wrap; margin-top: .4rem; }
 .bouton { font: 700 1.05rem var(--etroit); letter-spacing: .05em; text-transform: uppercase; text-decoration: none; padding: .9rem 1.4rem; border: 2px solid var(--pneu); }
