@@ -1,260 +1,218 @@
 <!doctype html>
-<html lang="fr" data-ambiance="jardin">
+<html lang="fr">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
 <title>Les Jardins du Pays de Caux · Paysagiste à Bolbec</title>
-<meta name="description" content="Les Jardins du Pays de Caux, paysagiste à Bolbec et alentours. Création, entretien et taille autour de Bolbec. Un interlocuteur unique, du premier coup de fil au dernier coup de râteau.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Figtree:wght@400;600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Petrona:ital,wght@0,500;0,700;1,500&family=Figtree:wght@400;500;700&display=swap">
 <style>
-/* Mise en page : en-tête collant, grande accroche sur photo, puis sections alternées sur fond clair / fond teinté. */
+/* Jardin normand : vert mousse profond, vert tendre, bleu hortensia. Photo plein cadre, puis calendrier des saisons. */
 :root {
-  --fond: #f6f7f2; --fond-teinte: #e7ebdf; --encre: #1d2a22; --encre-douce: #4a5a4f;
-  --principal: #2f5d3f; --accent: #c98a2b; --sur-principal: #ffffff;
-  --titre: "Young Serif", Georgia, serif; --texte: "Figtree", system-ui, sans-serif;
-  --rayon: 14px;
+  --fond: #f5f7f1; --mousse: #233d2b; --mousse-2: #3d6247; --tendre: #dfe9d2; --hortensia: #5868b8; --texte-doux: #56655a; --ligne: #d7e0cc;
+  --titre: "Petrona", Georgia, serif; --texte: "Figtree", system-ui, sans-serif;
   color-scheme: light;
 }
-[data-ambiance="jardin"] {
-  --fond: #f6f7f2; --fond-teinte: #e6ebdd; --encre: #1b2a20; --encre-douce: #4b5b50;
-  --principal: #2c5a3c; --accent: #c98a2b; --sur-principal: #ffffff;
-  --titre: "Young Serif", Georgia, serif; --texte: "Figtree", system-ui, sans-serif; --rayon: 18px;
-}
-[data-ambiance="atelier"] {
-  --fond: #f4f5f7; --fond-teinte: #e3e7ee; --encre: #151d29; --encre-douce: #4a5566;
-  --principal: #1c2a3a; --accent: #f2b630; --sur-principal: #ffffff;
-  --titre: "Archivo Narrow", "Arial Narrow", sans-serif; --texte: "Public Sans", system-ui, sans-serif; --rayon: 4px;
-}
-[data-ambiance="fournil"] {
-  --fond: #fbf8f3; --fond-teinte: #f1e7da; --encre: #2e1d12; --encre-douce: #6a5444;
-  --principal: #5a3218; --accent: #b8336a; --sur-principal: #ffffff;
-  --titre: "DM Serif Display", Georgia, serif; --texte: "Karla", system-ui, sans-serif; --rayon: 24px;
-}
-*, *::before, *::after { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
-@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
-body { margin: 0; background: var(--fond); color: var(--encre); font: 17px/1.6 var(--texte); }
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--fond); color: var(--mousse); font: 17px/1.65 var(--texte); }
 img { max-width: 100%; display: block; }
 a { color: inherit; }
-.cadre { width: min(1120px, 100%); margin-inline: auto; padding-left: max(20px, env(safe-area-inset-left, 0px)); padding-right: max(20px, env(safe-area-inset-right, 0px)); }
-h1, h2, h3 { font-family: var(--titre); font-weight: 400; line-height: 1.1; text-wrap: balance; margin: 0; }
-[data-ambiance="atelier"] h1, [data-ambiance="atelier"] h2, [data-ambiance="atelier"] h3 { font-weight: 700; text-transform: uppercase; letter-spacing: .01em; }
-h2 { font-size: clamp(1.9rem, 4vw, 2.8rem); }
-.surtitre { font-size: .78rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--principal); margin: 0 0 .7rem; }
-.bouton { display: inline-flex; align-items: center; gap: .5rem; padding: .85rem 1.4rem; border-radius: var(--rayon); font-weight: 700; text-decoration: none; border: 2px solid transparent; cursor: pointer; font: inherit; font-weight: 700; }
-.bouton-plein { background: var(--accent); color: var(--encre); }
-.bouton-contour { border-color: currentColor; background: transparent; }
-.bouton:focus-visible, input:focus-visible, textarea:focus-visible, select:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+.cadre { width: min(1180px, 100%); margin-inline: auto; padding-left: max(20px, env(safe-area-inset-left, 0px)); padding-right: max(20px, env(safe-area-inset-right, 0px)); }
+h1, h2, h3 { font-family: var(--titre); font-weight: 500; line-height: 1.05; margin: 0; text-wrap: balance; }
+h2 { font-size: clamp(2.2rem, 5vw, 3.4rem); }
+h2 em, h1 em { font-style: italic; color: var(--hortensia); }
+:focus-visible { outline: 3px solid var(--hortensia); outline-offset: 3px; }
+.etiquette { font: 700 .74rem var(--texte); letter-spacing: .16em; text-transform: uppercase; color: var(--mousse-2); }
 
-/* En-tête */
-.entete { position: sticky; top: 0; z-index: 20; background: var(--fond); border-bottom: 1px solid var(--fond-teinte); padding-top: env(safe-area-inset-top, 0px); }
-.entete .cadre { display: flex; align-items: center; justify-content: space-between; gap: 1rem; min-height: 68px; }
-.logo { font-family: var(--titre); font-size: 1.35rem; text-decoration: none; line-height: 1.1; }
-[data-ambiance="atelier"] .logo { font-weight: 700; text-transform: uppercase; }
-.logo small { display: block; font-family: var(--texte); font-size: .72rem; letter-spacing: .12em; text-transform: uppercase; color: var(--encre-douce); }
-.nav { display: flex; gap: 1.4rem; align-items: center; }
-.nav a { text-decoration: none; font-weight: 600; font-size: .95rem; }
-.nav .bouton { padding: .55rem 1rem; }
-@media (max-width: 760px) { .nav a:not(.bouton) { display: none; } }
-
-/* Accroche */
-.accroche { position: relative; color: var(--sur-principal); background: var(--principal); overflow: hidden; }
-.accroche .photo { position: absolute; inset: 0; background-size: cover; background-position: center; }
-.accroche .photo::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(0,0,0,.62), rgba(0,0,0,.25) 70%, rgba(0,0,0,.1)); }
-.accroche .motif { position: absolute; inset: 0; opacity: .16; }
-.accroche .cadre { position: relative; padding-block: clamp(4rem, 10vw, 7.5rem); display: grid; gap: 1.4rem; max-width: 1120px; }
-.accroche h1 { font-size: clamp(2.4rem, 6.4vw, 4.6rem); max-width: 14ch; }
-.accroche p { font-size: 1.15rem; max-width: 46ch; margin: 0; opacity: .92; }
-.accroche .actions { display: flex; flex-wrap: wrap; gap: .8rem; }
-.accroche .lieu { font-size: .85rem; letter-spacing: .12em; text-transform: uppercase; font-weight: 700; color: var(--accent); }
-
-/* Bandeau d'engagements */
-.engagements { background: var(--encre); color: var(--fond); }
-.engagements ul { list-style: none; margin: 0; padding-block: 1.2rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem 2rem; }
-.engagements li { display: flex; gap: .7rem; align-items: baseline; font-weight: 600; }
-.engagements li::before { content: ""; flex: none; width: .55rem; height: .55rem; border-radius: 50%; background: var(--accent); transform: translateY(-.1rem); }
+.couverture { position: relative; min-height: min(88vh, 760px); color: #fff; display: grid; grid-template-rows: auto 1fr; }
+.couverture > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.couverture::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(20,36,25,.55) 0%, rgba(20,36,25,.1) 40%, rgba(20,36,25,.75) 100%); }
+.couverture header, .couverture .texte { position: relative; z-index: 2; }
+header .cadre { display: flex; justify-content: space-between; align-items: center; min-height: 80px; gap: 1rem; padding-top: env(safe-area-inset-top, 0px); }
+.logo { font: 700 1.3rem/1.05 var(--titre); text-decoration: none; }
+.logo small { display: block; font: 500 .72rem var(--texte); letter-spacing: .14em; text-transform: uppercase; opacity: .85; }
+nav { display: flex; gap: 1.6rem; align-items: center; font-weight: 500; font-size: .95rem; }
+nav a { text-decoration: none; }
+nav .devis { background: #fff; color: var(--mousse); padding: .6rem 1.1rem; border-radius: 999px; font-weight: 700; }
+@media (max-width: 760px) { nav a:not(.devis) { display: none; } }
+.couverture .texte { align-self: end; padding-bottom: clamp(2.5rem, 7vw, 5rem); }
+.couverture h1 { font-size: clamp(2.8rem, 7.5vw, 5.8rem); max-width: 13ch; }
+.couverture h1 em { color: #c7d0ff; }
+.couverture p { max-width: 44ch; font-size: 1.12rem; margin: 1rem 0 1.6rem; opacity: .92; }
+.boutons { display: flex; gap: .8rem; flex-wrap: wrap; }
+.bouton { text-decoration: none; font-weight: 700; padding: .95rem 1.5rem; border-radius: 999px; }
+.bouton.plein { background: #fff; color: var(--mousse); }
+.bouton.ligne { border: 2px solid rgba(255,255,255,.7); }
 
 section { padding-block: clamp(3.5rem, 8vw, 6rem); }
-.teinte { background: var(--fond-teinte); }
-.entete-section { display: grid; gap: .6rem; margin-bottom: 2.4rem; max-width: 60ch; }
-.entete-section p { margin: 0; color: var(--encre-douce); }
+.prestations { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.2rem; margin-top: 2.4rem; }
+.presta { background: #fff; border-radius: 22px; overflow: hidden; display: grid; grid-template-rows: auto 1fr; border: 1px solid var(--ligne); }
+.presta img { aspect-ratio: 4 / 3; object-fit: cover; width: 100%; }
+.presta div { padding: 1.3rem 1.4rem 1.5rem; display: grid; gap: .4rem; align-content: start; }
+.presta h3 { font-size: 1.5rem; }
+.presta p { margin: 0; color: var(--texte-doux); font-size: .95rem; }
+.presta .cesu { justify-self: start; margin-top: .4rem; font: 700 .72rem var(--texte); letter-spacing: .08em; text-transform: uppercase; color: var(--hortensia); background: #e8ebfa; padding: .25rem .6rem; border-radius: 999px; }
 
-/* Services */
-.services { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.2rem; }
-.service { background: var(--fond); border-radius: var(--rayon); padding: 1.6rem; display: grid; gap: .5rem; align-content: start; border: 1px solid var(--fond-teinte); }
-.teinte .service { border-color: transparent; }
-.service h3 { font-size: 1.35rem; }
-.service p { margin: 0; color: var(--encre-douce); }
-.service .marque { width: 2.4rem; height: .3rem; background: var(--accent); border-radius: 2px; margin-bottom: .4rem; }
+.saisons { background: var(--mousse); color: #eef3e8; }
+.saisons .entete { display: flex; justify-content: space-between; align-items: end; gap: 1.5rem; flex-wrap: wrap; }
+.saisons .entete p { margin: 0; color: #b9c9b6; max-width: 44ch; }
+.saisons h2 em { color: #c7d0ff; }
+.mois { display: grid; grid-template-columns: repeat(12, 1fr); gap: 6px; margin-top: 2.4rem; }
+@media (max-width: 900px) { .mois { grid-template-columns: repeat(6, 1fr); } }
+@media (max-width: 480px) { .mois { grid-template-columns: repeat(3, 1fr); } }
+.mois button { font: inherit; color: inherit; background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.12); border-radius: 14px; padding: .8rem .3rem; cursor: pointer; display: grid; gap: .5rem; justify-items: center; }
+.mois button b { font: 500 1.05rem var(--titre); }
+.mois button span { display: block; width: 100%; height: 6px; border-radius: 3px; }
+.mois button[aria-pressed="true"] { background: #eef3e8; color: var(--mousse); }
+.detail { margin-top: 1.4rem; background: rgba(255,255,255,.06); border-radius: 22px; padding: 1.6rem; display: grid; grid-template-columns: auto 1fr; gap: 1.4rem; align-items: center; }
+@media (max-width: 640px) { .detail { grid-template-columns: 1fr; } }
+.detail .nom { font: italic 500 2.6rem/1 var(--titre); color: #c7d0ff; min-width: 7ch; }
+.detail ul { margin: 0; padding-left: 1.1rem; display: grid; gap: .3rem; }
+.legende { display: flex; gap: 1.4rem; flex-wrap: wrap; margin-top: 1rem; font-size: .85rem; color: #b9c9b6; }
+.legende i { display: inline-block; width: 18px; height: 6px; border-radius: 3px; margin-right: .4rem; vertical-align: middle; }
 
-/* Réalisations */
-.galerie { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 1rem; }
-.galerie figure { margin: 0; border-radius: var(--rayon); overflow: hidden; background: var(--fond-teinte); aspect-ratio: 4 / 3; position: relative; max-width: 100%; }
-.galerie img { width: 100%; height: 100%; object-fit: cover; }
-.galerie .vide { position: absolute; inset: 0; display: grid; place-items: end start; padding: 1rem; background: var(--principal); color: var(--sur-principal); }
-.galerie .vide svg { position: absolute; inset: 0; width: 100%; height: 100%; opacity: .22; }
-.galerie .vide span { position: relative; font-weight: 700; }
+.mosaique { display: grid; grid-template-columns: 1.4fr 1fr; gap: 12px; }
+.mosaique img { width: 100%; height: 100%; object-fit: cover; border-radius: 22px; }
+.mosaique .col { display: grid; gap: 12px; grid-template-rows: 1fr 1fr; }
+.mosaique .grand { min-height: 420px; }
+@media (max-width: 760px) { .mosaique { grid-template-columns: 1fr; } .mosaique .grand { min-height: 280px; } .mosaique .col img { min-height: 200px; } }
 
-/* Méthode */
-.etapes { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.6rem; counter-reset: etape; list-style: none; margin: 0; padding: 0; }
-.etapes li { counter-increment: etape; display: grid; gap: .4rem; }
-.etapes li::before { content: counter(etape); font-family: var(--titre); font-size: 2.6rem; color: var(--accent); line-height: 1; }
-.etapes h3 { font-size: 1.25rem; }
-.etapes p { margin: 0; color: var(--encre-douce); }
-
-/* Contact */
-.contact { display: grid; grid-template-columns: 1fr 1.2fr; gap: 2.4rem; align-items: start; }
-@media (max-width: 820px) { .contact { grid-template-columns: 1fr; } }
-.coordonnees { display: grid; gap: 1.2rem; }
-.coordonnees dl { margin: 0; display: grid; gap: 1rem; }
-.coordonnees dt { font-size: .78rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--encre-douce); }
-.coordonnees dd { margin: 0; font-size: 1.1rem; font-weight: 600; }
-.coordonnees .gros { font-family: var(--titre); font-size: 1.9rem; text-decoration: none; }
-form { background: var(--fond); border-radius: var(--rayon); padding: 1.6rem; display: grid; gap: 1rem; border: 1px solid var(--fond-teinte); }
+.contact { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start; }
+@media (max-width: 860px) { .contact { grid-template-columns: 1fr; } }
+.contact p { color: var(--texte-doux); }
+.num { font: 700 clamp(2rem, 5vw, 2.8rem)/1 var(--titre); text-decoration: none; user-select: all; }
+form { background: #fff; border-radius: 22px; border: 1px solid var(--ligne); padding: 1.8rem; display: grid; gap: 1rem; }
 .deux { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
 @media (max-width: 520px) { .deux { grid-template-columns: 1fr; } }
-label { display: grid; gap: .35rem; font-weight: 600; font-size: .92rem; min-width: 0; }
-input, textarea, select { font: inherit; padding: .75rem .85rem; border-radius: calc(var(--rayon) / 2); border: 1px solid #c9cfc6; background: #fff; color: var(--encre); width: 100%; }
-textarea { min-height: 120px; resize: vertical; }
-.confirmation { margin: 0; padding: .8rem 1rem; border-radius: calc(var(--rayon) / 2); background: var(--fond-teinte); font-weight: 600; }
-
-footer { background: var(--encre); color: var(--fond); padding-block: 2.4rem calc(2.4rem + 88px); font-size: .9rem; }
-footer .cadre { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1rem; }
-footer p { margin: 0; opacity: .8; }
-
-/* Bandeau d'aperçu (retiré automatiquement à la mise en ligne définitive) */
-.apercu { position: fixed; left: 0; right: 0; bottom: 0; z-index: 50; background: #111318; color: #f4f5f8; font: 15px/1.4 "Figtree", system-ui, sans-serif; padding-bottom: env(safe-area-inset-bottom, 0px); box-shadow: 0 -8px 30px rgba(0,0,0,.25); }
-.apercu .cadre { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: .6rem 1.2rem; padding-block: .8rem; }
-.apercu strong { color: #ffb36b; }
-.apercu .liens { display: flex; gap: .6rem; flex-wrap: wrap; }
-.apercu a { background: #ffb36b; color: #111318; text-decoration: none; font-weight: 700; padding: .5rem .9rem; border-radius: 999px; white-space: nowrap; }
-.apercu a.secondaire { background: transparent; color: #f4f5f8; border: 1px solid #5c6170; }
-.apercu button { background: none; border: 0; color: #9aa0ad; font: inherit; cursor: pointer; text-decoration: underline; }
+label { display: grid; gap: .3rem; font-weight: 500; font-size: .9rem; min-width: 0; }
+input, select, textarea { font: inherit; padding: .75rem .9rem; border: 1px solid var(--ligne); border-radius: 12px; background: var(--fond); color: var(--mousse); width: 100%; }
+textarea { min-height: 100px; }
+.surface { display: grid; gap: .3rem; }
+.surface output { font: 700 1.3rem var(--titre); }
+input[type="range"] { padding: 0; accent-color: var(--mousse-2); }
+button.envoyer { font: 700 1rem var(--texte); background: var(--mousse); color: #fff; border: 0; border-radius: 999px; padding: 1rem; cursor: pointer; }
+.ok { margin: 0; background: var(--tendre); border-radius: 12px; padding: .8rem 1rem; font-weight: 500; }
+footer { border-top: 1px solid var(--ligne); padding-block: 2rem 6rem; color: var(--texte-doux); font-size: .88rem; }
+footer .cadre { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
+.demo { position: fixed; left: 0; right: 0; bottom: 0; z-index: 50; background: var(--mousse); color: #fff; font: 14px/1.4 var(--texte); padding-bottom: env(safe-area-inset-bottom, 0px); }
+.demo .cadre { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: .5rem 1rem; padding-block: .7rem; }
+.demo a { background: #fff; color: var(--mousse); text-decoration: none; font-weight: 700; padding: .45rem .9rem; border-radius: 999px; }
 </style>
 </head>
 <body>
-
-<header class="entete">
-  <div class="cadre">
-    <a class="logo" href="#haut">Les Jardins du Pays de Caux<small>Paysagiste · Bolbec</small></a>
-    <nav class="nav" aria-label="Navigation">
-      <a href="#services">Services</a>
-      <a href="#realisations">Réalisations</a>
-      <a href="#contact">Contact</a>
-      <a class="bouton bouton-plein" href="tel:+33639981024">06 39 98 10 24</a>
-    </nav>
+<div class="couverture">
+  <img src="img/jardin.jpg" alt="Jardin soigné avec haie taillée, pelouse et salon de jardin en fer forgé" fetchpriority="high">
+  <header>
+    <div class="cadre">
+      <a class="logo" href="#">Les Jardins<br>du Pays de Caux<small>Paysagiste · Bolbec</small></a>
+      <nav aria-label="Navigation"><a href="#prestations">Prestations</a><a href="#saisons">Saisons</a><a class="devis" href="#contact">Devis gratuit</a></nav>
+    </div>
+  </header>
+  <div class="cadre texte">
+    <h1>Un jardin <em>beau</em> toute l'année, sans y passer vos week-ends.</h1>
+    <p>Entretien, taille, création et aménagement de jardins autour de Bolbec, Lillebonne et Fécamp. 50 % de votre facture d'entretien déductible des impôts.</p>
+    <div class="boutons"><a class="bouton plein" href="#contact">Demander un devis</a><a class="bouton ligne" href="#saisons">Voir le calendrier</a></div>
   </div>
-</header>
+</div>
 
-<main id="haut">
-  <section class="accroche" style="padding:0">
-    <div class="motif"><svg viewBox="0 0 120 120" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><defs><pattern id="m" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M20 4c9 8 9 24 0 32C11 28 11 12 20 4z" fill="none" stroke="#fff" stroke-width="1.5"/><path d="M20 8v26" stroke="#fff" stroke-width="1"/></pattern></defs><rect width="120" height="120" fill="url(#m)"/></svg></div>
+<main>
+  <section id="prestations">
     <div class="cadre">
-      <span class="lieu">Paysagiste · Bolbec et alentours</span>
-      <h1>Des jardins entretenus et aménagés avec soin</h1>
-      <p>Création, entretien et taille autour de Bolbec. Un interlocuteur unique, du premier coup de fil au dernier coup de râteau.</p>
-      <div class="actions">
-        <a class="bouton bouton-plein" href="#contact">Demander un devis gratuit</a>
-        <a class="bouton bouton-contour" href="tel:+33639981024">Appeler le 06 39 98 10 24</a>
+      <span class="etiquette">Prestations</span>
+      <h2 style="margin-top:.6rem">Tout votre extérieur, <em>un seul contact</em>.</h2>
+      <div class="prestations">
+        <article class="presta"><img src="img/pelouse.jpg" alt="Pelouse tondue dans un parc ombragé" loading="lazy"><div><h3>Entretien régulier</h3><p>Tonte, désherbage, ramassage des feuilles, avec un passage toutes les deux semaines.</p><span class="cesu">Crédit d'impôt 50 %</span></div></article>
+        <article class="presta"><img src="img/parterre.jpg" alt="Allées et haies basses taillées d'un jardin à la française" loading="lazy"><div><h3>Taille de haies</h3><p>Haies, arbustes et topiaires taillés net, déchets verts évacués.</p><span class="cesu">Crédit d'impôt 50 %</span></div></article>
+        <article class="presta"><img src="img/plantation.jpg" alt="Transplantoir et terreau prêts pour une plantation" loading="lazy"><div><h3>Création de massifs</h3><p>Plantes adaptées au climat normand, plans dessinés avec vous.</p></div></article>
+        <article class="presta"><img src="img/arrosage.jpg" alt="Main tenant un tuyau d'arrosage en action" loading="lazy"><div><h3>Arrosage & gazon</h3><p>Semis, regarnissage et arrosage automatique enterré.</p></div></article>
       </div>
     </div>
   </section>
 
-  <div class="engagements">
-    <ul class="cadre">
-      <li>Devis gratuit sous 48 h</li><li>Évacuation des déchets verts</li><li>Particuliers et professionnels</li><li>Paiement possible en CESU selon prestation</li>
-    </ul>
-  </div>
-
-  <section id="services">
+  <section class="saisons" id="saisons">
     <div class="cadre">
-      <div class="entete-section">
-        <p class="surtitre">Nos services</p>
-        <h2>Tout votre extérieur, en un seul contact</h2>
-        <p>Particuliers, copropriétés et professionnels : on s&#x27;adapte à la taille de votre terrain et à la saison.</p>
+      <div class="entete">
+        <div><span class="etiquette" style="color:#b9c9b6">Calendrier</span><h2 style="margin-top:.6rem">Votre jardin, <em>mois par mois</em>.</h2></div>
+        <p>Choisissez un mois pour voir ce que nous faisons dans les jardins du Pays de Caux à cette période.</p>
       </div>
-      <div class="services">
-        <article class="service"><div class="marque"></div><h3>Entretien de jardin</h3><p>Tonte, désherbage, ramassage des feuilles, passages réguliers ou ponctuels.</p></article><article class="service"><div class="marque"></div><h3>Taille et élagage</h3><p>Haies, arbustes et arbres, avec évacuation des déchets verts.</p></article><article class="service"><div class="marque"></div><h3>Création et aménagement</h3><p>Massifs, gazon, plantations, allées et bordures.</p></article><article class="service"><div class="marque"></div><h3>Débroussaillage</h3><p>Remise en état de terrains laissés à l&#x27;abandon.</p></article>
+      <div class="mois" id="mois" role="group" aria-label="Mois de l'année"></div>
+      <div class="detail" aria-live="polite"><div class="nom" id="nom-mois"></div><ul id="taches"></ul></div>
+      <div class="legende"><span><i style="background:#9ccf8f"></i>Plantation</span><span><i style="background:#f2d16b"></i>Tonte</span><span><i style="background:#c7d0ff"></i>Taille</span><span><i style="background:#d9a46c"></i>Nettoyage</span></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="cadre">
+      <span class="etiquette">Réalisations</span>
+      <h2 style="margin:.6rem 0 2rem">Quelques jardins entretenus <em>cette année</em>.</h2>
+      <div class="mosaique">
+        <img class="grand" src="img/hortensias.jpg" alt="Massif d'hortensias bleus" loading="lazy">
+        <div class="col"><img src="img/jardin.jpg" alt="Jardin avec haie et salon de jardin" loading="lazy" style="object-position:left"><img src="img/parterre.jpg" alt="Parterre de buis taillés" loading="lazy"></div>
       </div>
     </div>
   </section>
 
-  <section id="realisations" class="teinte">
-    <div class="cadre">
-      <div class="entete-section">
-        <p class="surtitre">Réalisations</p>
-        <h2>Quelques chantiers récents</h2>
-        <p>Des photos de nos interventions autour de Bolbec.</p>
-      </div>
-      <div class="galerie">
-        <figure><div class="vide"><svg viewBox="0 0 120 120" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><defs><pattern id="m" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M20 4c9 8 9 24 0 32C11 28 11 12 20 4z" fill="none" stroke="#fff" stroke-width="1.5"/><path d="M20 8v26" stroke="#fff" stroke-width="1"/></pattern></defs><rect width="120" height="120" fill="url(#m)"/></svg><span>Haie taillée</span></div></figure><figure><div class="vide"><svg viewBox="0 0 120 120" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><defs><pattern id="m" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M20 4c9 8 9 24 0 32C11 28 11 12 20 4z" fill="none" stroke="#fff" stroke-width="1.5"/><path d="M20 8v26" stroke="#fff" stroke-width="1"/></pattern></defs><rect width="120" height="120" fill="url(#m)"/></svg><span>Massif fleuri</span></div></figure><figure><div class="vide"><svg viewBox="0 0 120 120" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><defs><pattern id="m" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M20 4c9 8 9 24 0 32C11 28 11 12 20 4z" fill="none" stroke="#fff" stroke-width="1.5"/><path d="M20 8v26" stroke="#fff" stroke-width="1"/></pattern></defs><rect width="120" height="120" fill="url(#m)"/></svg><span>Pelouse remise à neuf</span></div></figure><figure><div class="vide"><svg viewBox="0 0 120 120" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><defs><pattern id="m" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M20 4c9 8 9 24 0 32C11 28 11 12 20 4z" fill="none" stroke="#fff" stroke-width="1.5"/><path d="M20 8v26" stroke="#fff" stroke-width="1"/></pattern></defs><rect width="120" height="120" fill="url(#m)"/></svg><span>Allée en gravier</span></div></figure><figure><div class="vide"><svg viewBox="0 0 120 120" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><defs><pattern id="m" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M20 4c9 8 9 24 0 32C11 28 11 12 20 4z" fill="none" stroke="#fff" stroke-width="1.5"/><path d="M20 8v26" stroke="#fff" stroke-width="1"/></pattern></defs><rect width="120" height="120" fill="url(#m)"/></svg><span>Terrain débroussaillé</span></div></figure><figure><div class="vide"><svg viewBox="0 0 120 120" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><defs><pattern id="m" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M20 4c9 8 9 24 0 32C11 28 11 12 20 4z" fill="none" stroke="#fff" stroke-width="1.5"/><path d="M20 8v26" stroke="#fff" stroke-width="1"/></pattern></defs><rect width="120" height="120" fill="url(#m)"/></svg><span>Jardin d&#x27;été</span></div></figure>
-      </div>
-    </div>
-  </section>
-
-  <section id="methode">
-    <div class="cadre">
-      <div class="entete-section">
-        <p class="surtitre">Comment ça se passe</p>
-        <h2>De votre appel à la fin du chantier</h2>
-      </div>
-      <ol class="etapes">
-        <li><h3>Vous nous appelez</h3><p>Ou vous remplissez le formulaire : on vous rappelle rapidement.</p></li><li><h3>On vient voir</h3><p>Visite sur place, conseils et devis détaillé, gratuitement.</p></li><li><h3>On réalise</h3><p>Aux dates convenues, avec un travail propre et soigné.</p></li>
-      </ol>
-    </div>
-  </section>
-
-  <section id="contact" class="teinte">
+  <section id="contact" style="padding-top:0">
     <div class="cadre contact">
-      <div class="coordonnees">
-        <div class="entete-section" style="margin:0">
-          <p class="surtitre">Contact</p>
-          <h2>Parlons de votre projet</h2>
-          <p>Réponse rapide, devis gratuit et sans engagement.</p>
-        </div>
-        <dl>
-          <div><dt>Téléphone</dt><dd><a class="gros" href="tel:+33639981024">06 39 98 10 24</a></dd></div>
-          <div><dt>Zone d'intervention</dt><dd>Bolbec et alentours</dd></div>
-          
-          <div><dt>Votre interlocuteur</dt><dd>Hugo Lemaire</dd></div>
-        </dl>
+      <div>
+        <span class="etiquette">Devis gratuit</span>
+        <h2 style="margin:.6rem 0 1rem">On passe voir votre jardin.</h2>
+        <p>Hugo se déplace gratuitement pour estimer le travail et vous remet un devis sous 48 heures.</p>
+        <a class="num" href="tel:+33639981024">06 39 98 10 24</a>
+        <p>Intervention à Bolbec, Lillebonne, Fécamp, Yvetot et alentours.</p>
       </div>
-      <form id="devis" novalidate>
+      <form id="f" novalidate>
         <div class="deux">
-          <label for="devis-nom">Nom<input id="devis-nom" name="nom" autocomplete="name" required></label>
-          <label for="devis-tel">Téléphone<input id="devis-tel" name="telephone" type="tel" autocomplete="tel" required></label>
+          <label for="f-nom">Nom<input id="f-nom" autocomplete="name"></label>
+          <label for="f-tel">Téléphone<input id="f-tel" type="tel" autocomplete="tel"></label>
         </div>
-        <div class="deux">
-          <label for="devis-ville">Ville<input id="devis-ville" name="ville" autocomplete="address-level2"></label>
-          <label for="devis-type">Votre besoin<select id="devis-type" name="besoin"><option>Entretien régulier</option><option>Taille de haie</option><option>Élagage</option><option>Création de jardin</option><option>Autre</option></select></label>
-        </div>
-        <label for="devis-message">Votre projet en quelques mots<textarea id="devis-message" name="message"></textarea></label>
-        <button class="bouton bouton-plein" type="submit">Envoyer ma demande de devis</button>
-        <p class="confirmation" id="devis-confirmation" hidden>Merci, votre demande est prête. Sur le site définitif, elle arrivera directement par e-mail.</p>
+        <label for="f-besoin">Votre besoin<select id="f-besoin"><option>Entretien régulier</option><option>Taille de haies</option><option>Création ou aménagement</option><option>Remise en état</option></select></label>
+        <div class="surface"><label for="f-surface">Surface du jardin</label><input type="range" id="f-surface" min="100" max="3000" step="50" value="600"><output id="f-surface-val" for="f-surface">600 m²</output></div>
+        <label for="f-msg">Précisions<textarea id="f-msg"></textarea></label>
+        <button class="envoyer" type="submit">Demander mon devis</button>
+        <p class="ok" id="ok" hidden>Merci ! Sur le site réel, Hugo vous rappellerait sous 48 heures.</p>
       </form>
     </div>
   </section>
 </main>
-
-<footer>
-  <div class="cadre">
-    <p>© 2026 Les Jardins du Pays de Caux · Paysagiste à Bolbec</p>
-    <p>Mentions légales · Politique de confidentialité</p>
-  </div>
-</footer>
-
-<aside class="apercu" aria-label="Site de démonstration"><div class="cadre"><span><strong>Site de démonstration</strong> · entreprise fictive · réalisé par Rob Jill</span><span class="liens"><a href="../../index.html#realisations">Voir les autres exemples</a><a class="secondaire" href="../../index.html#contact">Le même pour mon entreprise</a><button type="button" id="fermer-apercu">Masquer</button></span></div></aside>
-
+<footer><div class="cadre"><span>© Les Jardins du Pays de Caux · Bolbec</span><span>Mentions légales</span></div></footer>
+<aside class="demo"><div class="cadre"><span><b>Site de démonstration</b> · entreprise fictive · réalisé par Rob Jill</span><a href="../../index.html#realisations">Voir les autres exemples</a></div></aside>
 <script>
-document.getElementById("devis").addEventListener("submit", function (e) {
-  e.preventDefault();
-  document.getElementById("devis-confirmation").hidden = false;
-});
-var b = document.getElementById("fermer-apercu");
-if (b) b.addEventListener("click", function () { document.querySelector(".apercu").hidden = true; });
+(function () {
+  var C = { p: "#9ccf8f", t: "#f2d16b", a: "#c7d0ff", n: "#d9a46c" };
+  var M = [
+    ["Janvier", "a", ["Taille des arbres fruitiers", "Élagage hors période de nidification", "Entretien du matériel"]],
+    ["Février", "a", ["Taille des rosiers", "Préparation des massifs", "Plantation des arbres à racines nues"]],
+    ["Mars", "p", ["Scarification et regarnissage du gazon", "Premières plantations de vivaces", "Désherbage des allées"]],
+    ["Avril", "t", ["Première tonte de la saison", "Paillage des massifs", "Plantation des arbustes"]],
+    ["Mai", "t", ["Tonte toutes les deux semaines", "Plantation des annuelles", "Mise en route de l'arrosage"]],
+    ["Juin", "a", ["Taille des haies avant l'été", "Tonte régulière", "Surveillance des maladies"]],
+    ["Juillet", "t", ["Tonte haute pour protéger le gazon", "Arrosage le soir", "Taille légère des arbustes fleuris"]],
+    ["Août", "t", ["Entretien pendant vos vacances", "Arrosage et désherbage", "Taille des haies de laurier"]],
+    ["Septembre", "a", ["Seconde taille des haies", "Semis de gazon", "Division des vivaces"]],
+    ["Octobre", "p", ["Plantation des bulbes de printemps", "Plantation des haies", "Ramassage des feuilles"]],
+    ["Novembre", "n", ["Ramassage des feuilles", "Protection des plantes fragiles", "Dernière tonte"]],
+    ["Décembre", "n", ["Nettoyage d'hiver", "Taille des grands arbres", "Plan des aménagements de l'an prochain"]]
+  ];
+  var zone = document.getElementById("mois"), nom = document.getElementById("nom-mois"), taches = document.getElementById("taches");
+  function choisir(i) {
+    zone.querySelectorAll("button").forEach(function (b, k) { b.setAttribute("aria-pressed", k === i ? "true" : "false"); });
+    nom.textContent = M[i][0];
+    taches.innerHTML = M[i][2].map(function (t) { return "<li>" + t + "</li>"; }).join("");
+  }
+  M.forEach(function (m, i) {
+    var b = document.createElement("button"); b.type = "button";
+    b.innerHTML = "<b>" + m[0].slice(0, 3) + "</b><span style=\"background:" + C[m[1]] + "\"></span>";
+    b.setAttribute("aria-label", m[0]); b.addEventListener("click", function () { choisir(i); });
+    zone.appendChild(b);
+  });
+  choisir(new Date().getMonth());
+  var s = document.getElementById("f-surface"), o = document.getElementById("f-surface-val");
+  s.addEventListener("input", function () { o.textContent = Number(s.value).toLocaleString("fr-FR") + " m²"; });
+  document.getElementById("f").addEventListener("submit", function (e) { e.preventDefault(); document.getElementById("ok").hidden = false; });
+})();
 </script>
 </body>
 </html>
