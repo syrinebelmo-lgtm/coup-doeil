@@ -127,7 +127,8 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 .face.apres { clip-path: inset(0 0 0 var(--coupe, 50%)); }
 .etiquette-face { position: absolute; top: 14px; z-index: 3; font: 700 .72rem var(--texte); letter-spacing: .12em; padding: .3rem .7rem; border-radius: 999px; background: var(--encre); color: var(--papier); }
 .avant .etiquette-face { left: 14px; }
-.apres .etiquette-face { right: 14px; background: var(--orange); color: #1b0d05; }
+.apres .etiquette-face { right: 14px; top: auto; bottom: 14px; background: var(--orange); color: #1b0d05; }
+.avant .etiquette-face { top: auto; bottom: 14px; }
 .vieux { background: #ffffe0; color: #000; font-family: "Times New Roman", Times, serif; height: 100%; padding: 2.4rem 1.6rem 1rem; }
 .vieux .bandeau { background: #0000cc; color: #ffff00; font: bold 1.05rem Arial, sans-serif; text-align: center; padding: .4rem; }
 .vieux h4 { color: #cc0000; font-size: 1.6rem; text-align: center; margin: .8rem 0; text-decoration: underline; }
