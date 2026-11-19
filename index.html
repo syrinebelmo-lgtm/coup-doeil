@@ -8,7 +8,7 @@
 <meta name="description" content="Rob Jill crée des sites internet pour artisans, commerçants et indépendants en Normandie. Site une page dès 300 €, vous payez après avoir vu votre site.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gloock&family=Instrument+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gloock&family=Instrument+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&family=Unbounded:wght@500;700&display=swap">
 <style>
 /* Mise en page : colonne éditoriale alignée à gauche. L'accroche montre trois vrais sites en éventail ;
    ensuite des bandes alternées (papier / blanc / nuit) pour les formules, les exemples, la méthode et le contact. */
@@ -138,14 +138,53 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 .vieux p { margin: 0 0 .5rem; font-size: .98rem; }
 .vieux marquee, .vieux .defile { color: #008000; font-weight: bold; }
 .vieux .compteur { font: .85rem "Courier New", monospace; background: #000; color: #0f0; display: inline-block; padding: .1rem .4rem; margin-top: .6rem; }
-.neuf { height: 100%; display: grid; grid-template-rows: auto 1fr; background: #f4f5f7; color: #151d29; font-family: "Instrument Sans", system-ui, sans-serif; }
-.neuf .barre { display: flex; justify-content: space-between; align-items: center; padding: .9rem 1.6rem; background: #fff; border-bottom: 1px solid #e3e7ee; font-weight: 700; }
-.neuf .barre span { background: #f2b630; padding: .35rem .8rem; border-radius: 4px; font-size: .85rem; }
-.neuf .heros { background: #1c2a3a; color: #fff; padding: clamp(1.4rem, 4vw, 3rem) 1.6rem; display: grid; align-content: center; gap: .8rem; }
-.neuf .heros small { color: #f2b630; font-weight: 700; letter-spacing: .12em; font-size: .72rem; }
-.neuf .heros b { font: 700 clamp(1.4rem, 3.4vw, 2.6rem)/1.05 "Archivo Narrow", "Arial Narrow", sans-serif; text-transform: uppercase; max-width: 16ch; }
-.neuf .heros i { font-style: normal; opacity: .85; max-width: 40ch; font-size: .95rem; }
-.neuf .heros em { font-style: normal; justify-self: start; background: #f2b630; color: #151d29; font-weight: 700; padding: .55rem 1rem; border-radius: 4px; font-size: .9rem; }
+/* L'« après » : interface futuriste mais lisible — aurore animée, sol en perspective, verre dépoli, titre en dégradé */
+.comparateur { container-type: size; }
+.futur { position: absolute; inset: 0; background: #05060c; color: #eef1ff; font-family: "Instrument Sans", system-ui, sans-serif; overflow: hidden; display: grid; grid-template-rows: auto 1fr; }
+.aurore i { position: absolute; border-radius: 50%; filter: blur(40px); opacity: .55; animation: flotte 14s ease-in-out infinite alternate; }
+.aurore i:nth-child(1) { width: 55cqw; height: 55cqw; left: 40%; top: -25%; background: radial-gradient(circle, #ff8a3d, transparent 65%); }
+.aurore i:nth-child(2) { width: 45cqw; height: 45cqw; left: -10%; top: 30%; background: radial-gradient(circle, #5b6cff, transparent 65%); animation-delay: -5s; }
+.aurore i:nth-child(3) { width: 35cqw; height: 35cqw; left: 65%; top: 55%; background: radial-gradient(circle, #23d5c8, transparent 65%); animation-delay: -9s; opacity: .35; }
+@keyframes flotte { to { transform: translate(6cqw, 4cqh) scale(1.12); } }
+.sol { position: absolute; left: -20%; right: -20%; bottom: -10%; height: 55%; background-image: linear-gradient(rgba(130,150,255,.22) 1px, transparent 1px), linear-gradient(90deg, rgba(130,150,255,.22) 1px, transparent 1px); background-size: 4.5cqw 4.5cqw; transform: perspective(40cqw) rotateX(62deg); transform-origin: bottom; mask-image: linear-gradient(transparent, #000 70%); -webkit-mask-image: linear-gradient(transparent, #000 70%); animation: avance 6s linear infinite; }
+@keyframes avance { to { background-position: 0 4.5cqw; } }
+.f-barre { position: relative; z-index: 2; margin: 2.2cqh 2.4cqw 0; padding: 1.4cqh 1.6cqw; display: flex; align-items: center; justify-content: space-between; gap: 2cqw; border-radius: 999px; background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.12); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); font-size: max(10px, 1.25cqw); }
+.f-logo { display: flex; align-items: center; gap: .6cqw; font: 700 max(12px, 1.7cqw) "Unbounded", "Instrument Sans", sans-serif; letter-spacing: .06em; }
+.f-logo small { font: 500 max(9px, 1cqw) "Instrument Sans", sans-serif; color: #9aa3c7; letter-spacing: .1em; text-transform: uppercase; margin-left: .3cqw; }
+.f-point { width: 1.5cqw; height: 1.5cqw; min-width: 9px; min-height: 9px; border-radius: 50%; background: conic-gradient(#ffb36b, #ff6a3d, #ffd29a, #ffb36b); box-shadow: 0 0 1.5cqw #ff8a3d; }
+.f-liens { display: flex; gap: 2.2cqw; color: #b8bfdf; }
+.f-cta { padding: .8cqh 1.4cqw; border-radius: 999px; background: linear-gradient(90deg, #ff8a3d, #ffc56b); color: #1b0d05; font-weight: 700; box-shadow: 0 0 2cqw rgba(255,138,61,.55); white-space: nowrap; }
+.f-corps { position: relative; z-index: 2; display: grid; grid-template-columns: 1.05fr .95fr; gap: 3cqw; align-items: center; padding: 0 4cqw; }
+.f-texte { display: grid; gap: 2.2cqh; align-content: center; }
+.f-statut { justify-self: start; display: inline-flex; align-items: center; gap: .7cqw; padding: .6cqh 1.1cqw; border-radius: 999px; border: 1px solid rgba(35,213,200,.35); background: rgba(35,213,200,.08); color: #8ff3ea; font-size: max(9px, 1.1cqw); letter-spacing: .04em; }
+.f-statut i { width: .8cqw; height: .8cqw; min-width: 6px; min-height: 6px; border-radius: 50%; background: #23d5c8; box-shadow: 0 0 0 0 rgba(35,213,200,.7); animation: pouls 1.8s infinite; }
+@keyframes pouls { 70% { box-shadow: 0 0 0 1.2cqw rgba(35,213,200,0); } 100% { box-shadow: 0 0 0 0 rgba(35,213,200,0); } }
+.f-titre { font: 700 max(18px, 4.1cqw)/1.05 "Unbounded", "Instrument Sans", sans-serif; letter-spacing: -.02em; }
+.f-titre span { display: block; background: linear-gradient(90deg, #ffd29a, #ff8a3d 45%, #b9a8ff); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.f-sous { color: #aab2d6; font-size: max(10px, 1.45cqw); line-height: 1.5; max-width: 42ch; }
+.f-boutons { display: flex; gap: 1cqw; flex-wrap: wrap; }
+.f-btn { padding: 1.3cqh 1.8cqw; border-radius: 999px; background: #fff; color: #05060c; font-weight: 700; font-size: max(10px, 1.3cqw); box-shadow: 0 0 3cqw rgba(185,168,255,.45); }
+.f-btn.fantome { background: transparent; color: #eef1ff; border: 1px solid rgba(255,255,255,.3); box-shadow: none; }
+.f-scene { position: relative; height: 100%; min-height: 0; display: grid; place-items: center; perspective: 80cqw; }
+.f-carte { position: relative; width: 82%; aspect-ratio: 4 / 5; max-height: 72cqh; border-radius: 2cqw; overflow: hidden; transform: rotateY(-16deg) rotateX(6deg); border: 1px solid rgba(255,255,255,.18); box-shadow: -3cqw 4cqw 6cqw rgba(0,0,0,.6), 0 0 4cqw rgba(91,108,255,.35); animation: tangue 7s ease-in-out infinite alternate; }
+.f-carte img { width: 100%; height: 100%; object-fit: cover; filter: saturate(1.1) contrast(1.05); }
+.f-carte::after { content: ""; position: absolute; inset: 0; background: linear-gradient(160deg, rgba(255,255,255,.18), transparent 40%, rgba(91,108,255,.25)); }
+.f-scan { position: absolute; left: 0; right: 0; height: 18%; background: linear-gradient(transparent, rgba(35,213,200,.35), transparent); border-bottom: 1px solid rgba(143,243,234,.8); animation: scan 3.6s ease-in-out infinite; z-index: 1; }
+@keyframes scan { from { top: -20%; } to { top: 100%; } }
+@keyframes tangue { to { transform: rotateY(-8deg) rotateX(2deg) translateY(-1.2cqh); } }
+.f-puce { position: absolute; z-index: 2; display: grid; gap: .2cqh; padding: 1.1cqh 1.3cqw; border-radius: 1.4cqw; background: rgba(12,14,28,.6); border: 1px solid rgba(255,255,255,.14); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); font-size: max(9px, 1.05cqw); color: #aab2d6; white-space: nowrap; }
+.f-puce b { font: 700 max(12px, 1.9cqw)/1 "Unbounded", sans-serif; color: #fff; }
+.f-puce.p1 { top: 12%; left: 0; } .f-puce.p2 { top: 46%; right: -2%; } .f-puce.p3 { bottom: 10%; left: 6%; }
+.f-teintes { display: flex; gap: .4cqw; margin-bottom: .3cqh; } .f-teintes i { width: 1.6cqw; height: 1.6cqw; min-width: 10px; min-height: 10px; border-radius: 50%; border: 1px solid rgba(255,255,255,.4); }
+@container (max-aspect-ratio: 1/1) {
+  .f-liens { display: none; }
+  .f-corps { grid-template-columns: 1fr; grid-template-rows: auto 1fr; gap: 2cqh; padding: 3cqh 5cqw 0; align-items: start; }
+  .f-titre { font-size: 6.6cqw; } .f-sous { font-size: 3.2cqw; } .f-statut, .f-btn { font-size: 2.8cqw; }
+  .f-scene { height: 46cqh; } .f-carte { width: 52%; max-height: 42cqh; }
+  .f-puce { font-size: 2.6cqw; } .f-puce b { font-size: 3.6cqw; } .f-puce.p2 { right: 2%; } .f-puce.p1 { left: 4%; }
+  .f-barre { font-size: 2.8cqw; } .f-logo { font-size: 3.4cqw; }
+}
+@media (prefers-reduced-motion: reduce) { .aurore i, .sol, .f-carte, .f-scan, .f-statut i { animation: none; } }
 .poignee { position: absolute; top: 0; bottom: 0; left: var(--coupe, 50%); width: 3px; background: var(--orange); z-index: 4; transform: translateX(-50%); pointer-events: none; }
 .poignee::after { content: "⇆"; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 44px; height: 44px; border-radius: 50%; background: var(--orange); color: #1b0d05; display: grid; place-items: center; font-weight: 700; }
 .comparateur input[type="range"] { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; cursor: ew-resize; z-index: 5; margin: 0; }
@@ -211,9 +250,9 @@ footer a { color: var(--encre); }
   <div class="cadre">
     <a class="marque" href="#haut"><span class="rond" aria-hidden="true"></span>Rob Jill</a>
     <nav class="nav" aria-label="Navigation principale">
-      <a href="#formules">Formules</a>
       <a href="#realisations">Exemples</a>
       <a href="#methode">Méthode</a>
+      <a href="#formules">Tarifs</a>
       <a href="#faq">Questions</a>
       <a class="bouton bouton-plein" href="#contact">Demander un devis</a>
     </nav>
@@ -227,10 +266,6 @@ footer a { color: var(--encre); }
         <span class="surtitre">Création de sites internet · Normandie</span>
         <h1 style="margin-top:.8rem">Un vrai site pour votre entreprise, <em>sans le prix d'une agence</em>.</h1>
         <p class="intro">Je crée des sites pour les artisans, commerçants et indépendants. Je prépare votre site d'abord : vous ne payez que s'il vous plaît.</p>
-        <div class="prix-rapides">
-          <span>Une page <b>300 €</b></span>
-          <span>Plusieurs pages <b>500 €</b></span>
-        </div>
         <div class="actions">
           <a class="bouton bouton-plein" href="#contact">Demander mon site</a>
           <a class="bouton bouton-lien" href="#realisations">Voir des exemples</a>
@@ -253,56 +288,6 @@ footer a { color: var(--encre); }
     </ul>
   </div>
 
-  <section id="formules">
-    <div class="cadre">
-      <div class="titre-section">
-        <span class="surtitre">Formules</span>
-        <h2>Des tarifs fixes, annoncés dès le départ</h2>
-        <p>Choisissez selon la taille de votre activité. Chaque site est personnalisé avec vos photos, vos couleurs et vos textes.</p>
-      </div>
-      <div class="formules">
-        <article class="formule">
-          <span class="etiquette">Une page</span>
-          <h3>Site vitrine</h3>
-          <div class="montant">300 €</div>
-          <ul>
-            <li>Présentation de votre activité et de vos services</li>
-            <li>Galerie de vos réalisations</li>
-            <li>Formulaire de demande de devis</li>
-            <li>Coordonnées, carte et liens vers vos réseaux</li>
-            <li>Parfait sur téléphone</li>
-          </ul>
-          <a class="bouton bouton-plein" href="#contact">Choisir cette formule</a>
-        </article>
-        <article class="formule vedette">
-          <span class="etiquette">La plus complète</span>
-          <h3>Site plusieurs pages</h3>
-          <div class="montant">500 €</div>
-          <ul>
-            <li>Une page par service, pour mieux ressortir sur Google</li>
-            <li>Pages réalisations, à propos et contact</li>
-            <li>Textes optimisés pour votre ville et votre métier</li>
-            <li>Formulaire de devis détaillé</li>
-            <li>Tout ce que contient le site vitrine</li>
-          </ul>
-          <a class="bouton bouton-plein" href="#contact">Choisir cette formule</a>
-        </article>
-        <article class="formule">
-          <span class="etiquette">Ensuite</span>
-          <h3>Hébergement et suivi</h3>
-          <div class="montant">30 €<small>par an</small></div>
-          <ul>
-            <li>Hébergement et nom de domaine à votre nom</li>
-            <li>Mises à jour de sécurité</li>
-            <li>Petites modifications incluses toute l'année (photos, horaires, textes)</li>
-            <li>Soit 2,50 € par mois, sans frais cachés</li>
-          </ul>
-          <a class="bouton bouton-plein" href="#faq">En savoir plus</a>
-        </article>
-      </div>
-      <p class="note">Prix nets, TVA non applicable (article 293 B du CGI). Un projet qui sort de l'ordinaire fait l'objet d'un devis avant tout travail.</p>
-    </div>
-  </section>
 
   <section id="realisations" class="realisations">
     <div class="cadre">
@@ -373,16 +358,29 @@ footer a { color: var(--encre); }
         </div>
         <div class="face apres">
           <span class="etiquette-face">APRÈS</span>
-          <div class="neuf">
-            <div class="barre">MENUISERIE DUBOIS <span>Devis gratuit</span></div>
-            <div class="heros">
-              <small>MENUISIER · NORMANDIE</small>
-              <b>Portes, fenêtres et escaliers sur mesure</b>
-              <i>Fabrication dans notre atelier et pose soignée. Devis gratuit sous 48 heures.</i>
-              <em>Demander un devis</em>
+          <div class="futur">
+            <div class="aurore" aria-hidden="true"><i></i><i></i><i></i></div>
+            <div class="sol" aria-hidden="true"></div>
+            <div class="f-barre">
+              <span class="f-logo"><span class="f-point"></span>DUBOIS<small>atelier bois</small></span>
+              <span class="f-liens"><span>Ouvrages</span><span>Matières</span><span>Atelier</span></span>
+              <span class="f-cta">Devis 48 h</span>
+            </div>
+            <div class="f-corps">
+              <div class="f-texte">
+                <span class="f-statut"><i></i>Atelier ouvert · réponse aujourd'hui</span>
+                <b class="f-titre">Le bois sur mesure, <span>pensé au millimètre.</span></b>
+                <span class="f-sous">Escaliers, portes et agencements modélisés en 3D avant fabrication. Vous validez le rendu, on le construit.</span>
+                <span class="f-boutons"><span class="f-btn">Concevoir mon projet</span><span class="f-btn fantome">Voir en 3D</span></span>
+              </div>
+              <div class="f-scene">
+                <div class="f-carte"><img src="realisations/menuiserie-vasseur/img/agencement.jpg" alt=""><span class="f-scan" aria-hidden="true"></span></div>
+                <span class="f-puce p1"><b>±1 mm</b>précision de coupe</span>
+                <span class="f-puce p2"><span class="f-teintes"><i style="background:#c99a5b"></i><i style="background:#e3c99c"></i><i style="background:#6b4a33"></i></span>Chêne · Frêne · Noyer</span>
+                <span class="f-puce p3"><b>10 ans</b>garantie décennale</span>
+              </div>
             </div>
           </div>
-        </div>
         <div class="poignee" aria-hidden="true"></div>
         <input type="range" id="curseur" min="0" max="100" value="50" aria-label="Comparer avant et après">
       </div>
@@ -419,6 +417,57 @@ footer a { color: var(--encre); }
         <div><h3>Pensé pour le téléphone</h3><p>La plupart de vos clients vous cherchent depuis leur portable : le site est conçu d'abord pour eux.</p></div>
         <div><h3>Zéro technique pour vous</h3><p>Nom de domaine, hébergement, mises à jour : je m'occupe de tout, vous gardez la main sur le contenu.</p></div>
       </div>
+    </div>
+  </section>
+
+  <section id="formules">
+    <div class="cadre">
+      <div class="titre-section">
+        <span class="surtitre">Formules</span>
+        <h2>Des tarifs fixes, annoncés dès le départ</h2>
+        <p>Choisissez selon la taille de votre activité. Chaque site est personnalisé avec vos photos, vos couleurs et vos textes.</p>
+      </div>
+      <div class="formules">
+        <article class="formule">
+          <span class="etiquette">Une page</span>
+          <h3>Site vitrine</h3>
+          <div class="montant">300 €</div>
+          <ul>
+            <li>Présentation de votre activité et de vos services</li>
+            <li>Galerie de vos réalisations</li>
+            <li>Formulaire de demande de devis</li>
+            <li>Coordonnées, carte et liens vers vos réseaux</li>
+            <li>Parfait sur téléphone</li>
+          </ul>
+          <a class="bouton bouton-plein" href="#contact">Choisir cette formule</a>
+        </article>
+        <article class="formule vedette">
+          <span class="etiquette">La plus complète</span>
+          <h3>Site plusieurs pages</h3>
+          <div class="montant">500 €</div>
+          <ul>
+            <li>Une page par service, pour mieux ressortir sur Google</li>
+            <li>Pages réalisations, à propos et contact</li>
+            <li>Textes optimisés pour votre ville et votre métier</li>
+            <li>Formulaire de devis détaillé</li>
+            <li>Tout ce que contient le site vitrine</li>
+          </ul>
+          <a class="bouton bouton-plein" href="#contact">Choisir cette formule</a>
+        </article>
+        <article class="formule">
+          <span class="etiquette">Ensuite</span>
+          <h3>Hébergement et suivi</h3>
+          <div class="montant">30 €<small>par an</small></div>
+          <ul>
+            <li>Hébergement et nom de domaine à votre nom</li>
+            <li>Mises à jour de sécurité</li>
+            <li>Petites modifications incluses toute l'année (photos, horaires, textes)</li>
+            <li>Soit 2,50 € par mois, sans frais cachés</li>
+          </ul>
+          <a class="bouton bouton-plein" href="#faq">En savoir plus</a>
+        </article>
+      </div>
+      <p class="note">Prix nets, TVA non applicable (article 293 B du CGI). Un projet qui sort de l'ordinaire fait l'objet d'un devis avant tout travail.</p>
     </div>
   </section>
 
