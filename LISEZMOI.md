@@ -1,4 +1,10 @@
-# Coup d'Œil — les aperçus privés de Rob Jill
+# Rob Jill — site vitrine et aperçus privés (Coup d'Œil)
+
+- `index.html` : la vitrine Rob Jill (formules, exemples, méthode, FAQ, contact).
+- `realisations/` : 6 sites d'entreprises **fictives** montrés en exemples.
+- `apercu/` : la page « Entrez votre code ».
+- `a/<CODE>/` : les aperçus privés envoyés aux prospects.
+- `mentions-legales.html` : à compléter avec ton nom, SIRET et adresse.
 
 Le site qui héberge les maquettes envoyées aux prospects. Chaque prospect reçoit un lien privé
 (`/a/<CODE>/`) avec un code de 6 caractères. Le site n'est pas référencé sur Google.

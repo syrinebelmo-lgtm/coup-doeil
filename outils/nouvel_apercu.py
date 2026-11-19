@@ -123,16 +123,82 @@ METIERS = {
         "options": ["Prise de rendez-vous", "Mariage ou événement", "Carte cadeau", "Autre"],
         "galerie": ["Le salon", "Coupe", "Couleur", "Soin", "Coiffure de mariage", "Produits"],
     },
+    "menuisier": {
+        "ambiance": "atelier", "titre_metier": "Menuisier",
+        "titre": "Portes, fenêtres et agencements sur mesure",
+        "accroche": "Menuiserie bois et alu autour de {ville}. Fabrication à l'atelier, pose soignée et conseils pour chaque pièce.",
+        "titre_services": "Du sur-mesure, de l'atelier à chez vous",
+        "intro_services": "On fabrique et on pose : vous avez un seul interlocuteur du devis à la finition.",
+        "services": [
+            ("Portes et fenêtres", "Fabrication et pose, bois ou aluminium, avec isolation renforcée."),
+            ("Escaliers", "Escaliers droits, quart tournant ou suspendus, dessinés pour votre maison."),
+            ("Placards et dressings", "Rangements sur mesure qui exploitent chaque centimètre."),
+            ("Terrasses bois", "Terrasses, pergolas et bardages en bois durable."),
+        ],
+        "engagements": ["Devis gratuit sous 48 h", "Fabrication dans notre atelier", "Pose par nos soins", "Garantie sur la pose"],
+        "options": ["Porte ou fenêtre", "Escalier", "Placard ou dressing", "Terrasse", "Autre"],
+        "galerie": ["Escalier en chêne", "Dressing sur mesure", "Porte d'entrée", "Terrasse en pin", "Fenêtres bois", "Bibliothèque"],
+    },
+    "restaurant": {
+        "ambiance": "fournil", "titre_metier": "Pizzeria",
+        "titre": "Pizzas au feu de bois, pâte maison",
+        "accroche": "À {ville}, sur place ou à emporter. Pâte reposée 48 heures, produits italiens et four à bois.",
+        "titre_services": "Sur place, à emporter ou en livraison",
+        "intro_services": "Commandez par téléphone, on prépare votre pizza à l'heure qui vous arrange.",
+        "services": [
+            ("Pizzas au feu de bois", "Une vingtaine de recettes, des classiques aux pizzas du moment."),
+            ("À emporter", "Commande par téléphone, prête à l'heure annoncée."),
+            ("Livraison", "Livraison dans un rayon de 5 km, le soir du mardi au dimanche."),
+            ("Desserts maison", "Tiramisu, panna cotta et pizzas sucrées."),
+        ],
+        "engagements": ["Pâte maison reposée 48 h", "Four à bois", "Commande par téléphone", "Ouvert 6 soirs sur 7"],
+        "options": ["Réserver une table", "Commander à emporter", "Événement ou groupe", "Autre"],
+        "galerie": ["La Margherita", "Le four à bois", "La salle", "Calzone", "Tiramisu maison", "La terrasse"],
+    },
+    "garage": {
+        "ambiance": "atelier", "titre_metier": "Garage automobile",
+        "titre": "Entretien et réparation toutes marques",
+        "accroche": "Votre garage à {ville}. Devis avant chaque intervention, délais annoncés et pièces garanties.",
+        "titre_services": "Tout l'entretien de votre véhicule",
+        "intro_services": "Voitures particulières et utilitaires, toutes marques, sur rendez-vous.",
+        "services": [
+            ("Révision et vidange", "Entretien constructeur sans perdre votre garantie."),
+            ("Freinage et pneus", "Plaquettes, disques, pneus et géométrie."),
+            ("Diagnostic", "Lecture des voyants et recherche de panne électronique."),
+            ("Préparation au contrôle technique", "On vérifie tout avant le passage, et on s'occupe de la contre-visite."),
+        ],
+        "engagements": ["Devis avant intervention", "Toutes marques", "Pièces garanties", "Véhicule de prêt sur demande"],
+        "options": ["Révision", "Freins ou pneus", "Diagnostic", "Contrôle technique", "Autre"],
+        "galerie": ["L'atelier", "Pont élévateur", "Diagnostic", "Pneumatiques", "Utilitaire", "Accueil"],
+    },
 }
 ALIAS = {"plombier": "batiment", "chauffagiste": "batiment", "electricien": "batiment", "macon": "batiment",
-         "menuisier": "batiment", "platrier": "batiment", "carreleur": "batiment", "couvreur": "batiment",
-         "patissier": "boulangerie", "boulanger": "boulangerie", "coiffeur": "beaute", "estheticienne": "beaute"}
+         "platrier": "batiment", "carreleur": "batiment", "couvreur": "batiment",
+         "patissier": "boulangerie", "boulanger": "boulangerie", "coiffeur": "beaute", "estheticienne": "beaute",
+         "pizzeria": "restaurant"}
 
 ETAPES = [
     ("Vous nous appelez", "Ou vous remplissez le formulaire : on vous rappelle rapidement."),
     ("On vient voir", "Visite sur place, conseils et devis détaillé, gratuitement."),
     ("On réalise", "Aux dates convenues, avec un travail propre et soigné."),
 ]
+# Textes pour les commerces (pas de « chantier » ni de visite sur place)
+COMMERCE = {
+    "surtitre_galerie": "En images", "titre_galerie": "Un aperçu de la maison",
+    "intro_galerie": "La boutique, l'équipe et ce qu'on prépare chaque jour à {ville}.",
+    "titre_etapes": "Commander, c'est simple",
+    "etapes": [
+        ("Vous appelez ou écrivez", "Dites-nous ce qui vous ferait plaisir et pour quand."),
+        ("On prépare", "Tout est fait sur place, au dernier moment, pour être servi au mieux."),
+        ("Vous passez", "À l'heure convenue : votre commande vous attend."),
+    ],
+}
+for _cle in ("boulangerie", "restaurant", "beaute"):
+    METIERS[_cle].update({k: v for k, v in COMMERCE.items() if k not in METIERS[_cle]})
+METIERS["beaute"].update({"titre_etapes": "Prendre rendez-vous", "titre_galerie": "Le salon en images",
+                          "etapes": [("Vous appelez", "On trouve ensemble le créneau qui vous convient."),
+                                     ("On vous conseille", "Un vrai temps d'échange avant chaque prestation."),
+                                     ("Vous repartez ravie", "Avec des conseils pour garder le résultat longtemps.")]})
 
 MOTIFS = {
     "jardin": '<svg viewBox="0 0 120 120" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><defs><pattern id="m" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M20 4c9 8 9 24 0 32C11 28 11 12 20 4z" fill="none" stroke="#fff" stroke-width="1.5"/><path d="M20 8v26" stroke="#fff" stroke-width="1"/></pattern></defs><rect width="120" height="120" fill="url(#m)"/></svg>',
@@ -199,7 +265,16 @@ def construire(infos, config, code, photos_relatives, apercu=True):
     lignes_dirigeant = ('<div><dt>Votre interlocuteur</dt><dd>%s</dd></div>' % e(infos["dirigeant"])) if infos.get("dirigeant") else ""
 
     bandeau = ""
-    if apercu:
+    if infos.get("demo"):
+        bandeau = (
+            '<aside class="apercu" aria-label="Site de démonstration"><div class="cadre">'
+            '<span><strong>Site de démonstration</strong> · entreprise fictive · réalisé par %s</span>'
+            '<span class="liens"><a href="../../index.html#realisations">Voir les autres exemples</a>'
+            '<a class="secondaire" href="../../index.html#contact">Le même pour mon entreprise</a>'
+            '<button type="button" id="fermer-apercu">Masquer</button></span>'
+            '</div></aside>'
+        ) % e(config["marque"])
+    elif apercu:
         lien_sms = "sms:%s" % re.sub(r"[^\d+]", "", config["telephone_vendeur"])
         bandeau = (
             '<aside class="apercu" aria-label="Aperçu privé"><div class="cadre">'
@@ -230,7 +305,11 @@ def construire(infos, config, code, photos_relatives, apercu=True):
         "SERVICES": "".join('<article class="service"><div class="marque"></div><h3>%s</h3><p>%s</p></article>'
                             % (e(t), e(d)) for t, d in m["services"]),
         "GALERIE": "".join(tuiles),
-        "ETAPES": "".join("<li><h3>%s</h3><p>%s</p></li>" % (e(t), e(d)) for t, d in ETAPES),
+        "ETAPES": "".join("<li><h3>%s</h3><p>%s</p></li>" % (e(t), e(d)) for t, d in m.get("etapes", ETAPES)),
+        "SURTITRE_GALERIE": e(m.get("surtitre_galerie", "Réalisations")),
+        "TITRE_GALERIE": e(m.get("titre_galerie", "Quelques chantiers récents")),
+        "INTRO_GALERIE": e(m.get("intro_galerie", "Des photos de nos interventions autour de {ville}.").format(ville=ville)),
+        "TITRE_ETAPES": e(m.get("titre_etapes", "De votre appel à la fin du chantier")),
         "LIGNE_ADRESSE": lignes_adresse,
         "LIGNE_DIRIGEANT": lignes_dirigeant,
         "OPTIONS_DEVIS": "".join("<option>%s</option>" % e(o) for o in m["options"]),
@@ -274,6 +353,7 @@ def main():
     p.add_argument("--titre", help="phrase d'accroche personnalisée (facultatif)")
     p.add_argument("--photos", help="dossier contenant les photos du client")
     p.add_argument("--modele-demo", metavar="DOSSIER", help="(interne) crée une page de démo dans modeles/DOSSIER")
+    p.add_argument("--exemple", metavar="DOSSIER", help="(interne) crée une réalisation fictive dans realisations/DOSSIER")
     p.add_argument("--sans-publier", action="store_true", help="ne pas publier sur GitHub")
     args = p.parse_args()
 
@@ -294,7 +374,11 @@ def main():
         cle_metier = "batiment"
     infos["metier_cle"] = cle_metier
 
-    if args.modele_demo:
+    if args.exemple:
+        infos["demo"] = True
+        dossier = os.path.join(RACINE, "realisations", args.exemple)
+        code = None
+    elif args.modele_demo:
         dossier = os.path.join(RACINE, "modeles", args.modele_demo)
         code = None
     else:
@@ -313,10 +397,13 @@ def main():
             shutil.copy(src, os.path.join(dossier, "photos", nom))
             photos_relatives.append("photos/" + nom)
 
-    page = construire(infos, config, code, photos_relatives, apercu=not args.modele_demo)
+    page = construire(infos, config, code, photos_relatives, apercu=not (args.modele_demo or args.exemple))
     with open(os.path.join(dossier, "index.html"), "w", encoding="utf-8") as f:
         f.write(page)
 
+    if args.exemple:
+        print("Réalisation fictive créée : realisations/%s/index.html" % args.exemple)
+        return
     if args.modele_demo:
         print("Modèle de démo créé : modeles/%s/index.html" % args.modele_demo)
         return

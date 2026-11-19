@@ -1,0 +1,277 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Coup d'Œil · Rob Jill</title>
+<meta name="description" content="Découvrez l'aperçu privé du site internet préparé pour votre entreprise par Rob Jill.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gloock&family=Instrument+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap">
+<style>
+/* Mise en page : une colonne de texte face à un « œilleton » rond qui montre un site en miniature,
+   puis bandes horizontales (modèles, déroulé, tarif). Le code d'accès est l'élément central. */
+:root {
+  --papier: #f2f3f7; --surface: #ffffff; --encre: #181b2d; --encre-douce: #565b73;
+  --trait: #dcdfe9; --orange: #f2672e; --orange-doux: #fde3d6; --nuit: #181b2d; --sur-nuit: #f2f3f7;
+  --titre: "Gloock", Georgia, serif; --texte: "Instrument Sans", system-ui, sans-serif;
+  --code: "JetBrains Mono", ui-monospace, Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --papier: #111321; --surface: #1a1d2e; --encre: #eceef6; --encre-douce: #a4a9c0;
+    --trait: #2b2f45; --orange: #ff8650; --orange-doux: #3a2419; --nuit: #0b0c16; --sur-nuit: #eceef6;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --papier: #111321; --surface: #1a1d2e; --encre: #eceef6; --encre-douce: #a4a9c0;
+  --trait: #2b2f45; --orange: #ff8650; --orange-doux: #3a2419; --nuit: #0b0c16; --sur-nuit: #eceef6;
+  color-scheme: dark;
+}
+*, *::before, *::after { box-sizing: border-box; }
+body { margin: 0; background: var(--papier); color: var(--encre); font: 17px/1.6 var(--texte); }
+.cadre { width: min(1120px, 100%); margin-inline: auto; padding-left: max(20px, env(safe-area-inset-left, 0px)); padding-right: max(20px, env(safe-area-inset-right, 0px)); }
+h1, h2, h3 { font-family: var(--titre); font-weight: 400; line-height: 1.05; margin: 0; text-wrap: balance; }
+a { color: inherit; }
+:focus-visible { outline: 3px solid var(--orange); outline-offset: 3px; }
+
+.entete { padding-block: 1.4rem; }
+.entete .cadre { display: flex; justify-content: space-between; align-items: center; gap: 1rem; }
+.marque { display: flex; align-items: center; gap: .6rem; text-decoration: none; font-weight: 700; letter-spacing: .01em; }
+.marque .rond { width: 30px; height: 30px; border-radius: 50%; background: var(--encre); display: grid; place-items: center; }
+.marque .rond::after { content: ""; width: 10px; height: 10px; border-radius: 50%; background: var(--orange); }
+.marque small { font-weight: 500; color: var(--encre-douce); }
+.entete nav a { font-weight: 600; text-decoration: none; font-size: .95rem; }
+
+/* Accroche */
+.accroche .cadre { display: grid; grid-template-columns: 1.1fr .9fr; gap: clamp(2rem, 5vw, 4rem); align-items: center; padding-block: clamp(2rem, 6vw, 4.5rem) clamp(3rem, 7vw, 5rem); }
+@media (max-width: 860px) { .accroche .cadre { grid-template-columns: 1fr; } .oeil { order: -1; max-width: 300px; } }
+.accroche h1 { font-size: clamp(2.6rem, 6.5vw, 4.9rem); letter-spacing: -.01em; }
+.accroche h1 em { font-style: normal; color: var(--orange); }
+.accroche .intro { font-size: 1.15rem; color: var(--encre-douce); max-width: 44ch; margin: 1.2rem 0 2rem; }
+
+.acces { background: var(--surface); border: 1px solid var(--trait); border-radius: 20px; padding: 1.4rem; display: grid; gap: .9rem; max-width: 480px; }
+.acces label { font-weight: 600; font-size: .95rem; }
+.acces .ligne { display: flex; gap: .6rem; flex-wrap: wrap; }
+.acces input { flex: 1 1 200px; min-width: 0; font: 700 1.6rem/1 var(--code); letter-spacing: .35em; text-transform: uppercase; padding: .8rem 1rem; border-radius: 12px; border: 2px solid var(--trait); background: var(--papier); color: var(--encre); }
+.acces input::placeholder { color: var(--trait); }
+.acces button { font: 700 1rem var(--texte); padding: .9rem 1.4rem; border-radius: 12px; border: 0; background: var(--orange); color: #1b0d05; cursor: pointer; }
+.acces .aide { margin: 0; font-size: .9rem; color: var(--encre-douce); }
+.acces .erreur { margin: 0; font-size: .92rem; font-weight: 600; color: var(--orange); }
+
+/* L'œilleton : un site miniature vu à travers une lentille */
+.oeil { position: relative; aspect-ratio: 1; width: 100%; max-width: 440px; justify-self: center; border-radius: 50%; background: var(--nuit); padding: 7%; box-shadow: 0 0 0 10px var(--surface), 0 0 0 11px var(--trait), 0 30px 60px -30px rgba(24,27,45,.5); }
+.lentille { width: 100%; height: 100%; border-radius: 50%; overflow: hidden; position: relative; background: #f6f7f2; }
+.lentille::after { content: ""; position: absolute; inset: 0; border-radius: 50%; background: radial-gradient(circle at 32% 28%, rgba(255,255,255,.45), transparent 32%), radial-gradient(circle, transparent 58%, rgba(0,0,0,.35)); pointer-events: none; }
+.mini { position: absolute; inset: 0; display: grid; grid-template-rows: 11% 38% 1fr; transition: opacity .6s ease; }
+.mini .barre { display: flex; align-items: center; justify-content: space-between; padding: 0 22%; font: 700 .62rem var(--texte); }
+.mini .barre i { width: 22%; height: 34%; border-radius: 6px; }
+.mini .heros { padding: 6% 20%; display: grid; align-content: center; gap: 6%; color: #fff; }
+.mini .heros b { font: 400 1.25rem/1.05 var(--titre); }
+.mini .heros span { width: 46%; height: 9px; border-radius: 5px; }
+.mini .grille { display: grid; grid-template-columns: repeat(3, 1fr); gap: 5%; padding: 7% 18% 0; align-content: start; }
+.mini .grille i { aspect-ratio: 4 / 3; border-radius: 6px; }
+.mini[data-m="jardin"] { background: #f6f7f2; } .mini[data-m="jardin"] .heros { background: #2c5a3c; } .mini[data-m="jardin"] i, .mini[data-m="jardin"] .heros span { background: #c98a2b; } .mini[data-m="jardin"] .grille i { background: #d5dccb; }
+.mini[data-m="atelier"] { background: #f4f5f7; } .mini[data-m="atelier"] .heros { background: #1c2a3a; } .mini[data-m="atelier"] i, .mini[data-m="atelier"] .heros span { background: #f2b630; } .mini[data-m="atelier"] .grille i { background: #d3d9e3; }
+.mini[data-m="fournil"] { background: #fbf8f3; } .mini[data-m="fournil"] .heros { background: #5a3218; } .mini[data-m="fournil"] i, .mini[data-m="fournil"] .heros span { background: #b8336a; } .mini[data-m="fournil"] .grille i { background: #ecdccb; }
+.mini:not(.visible) { opacity: 0; }
+@media (prefers-reduced-motion: reduce) { .mini { transition: none; } }
+.oeil .etiquette { position: absolute; left: 50%; bottom: -14px; transform: translateX(-50%); background: var(--surface); border: 1px solid var(--trait); color: var(--encre); border-radius: 999px; padding: .3rem .9rem; font: 600 .8rem var(--texte); white-space: nowrap; }
+
+section { padding-block: clamp(3.5rem, 8vw, 5.5rem); }
+.titre-section { display: grid; gap: .6rem; margin-bottom: 2.2rem; max-width: 58ch; }
+.titre-section h2 { font-size: clamp(2rem, 4.5vw, 3rem); }
+.titre-section p { margin: 0; color: var(--encre-douce); }
+.surtitre { font: 700 .76rem var(--texte); letter-spacing: .16em; text-transform: uppercase; color: var(--orange); }
+
+/* Modèles */
+.modeles { background: var(--surface); border-block: 1px solid var(--trait); }
+.cartes { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.2rem; }
+.carte { display: grid; grid-template-rows: auto 1fr; border-radius: 18px; overflow: hidden; border: 1px solid var(--trait); text-decoration: none; background: var(--papier); transition: transform .2s ease; }
+.carte:hover { transform: translateY(-3px); }
+@media (prefers-reduced-motion: reduce) { .carte { transition: none; } .carte:hover { transform: none; } }
+.carte .visuel { aspect-ratio: 16 / 10; max-width: 100%; display: grid; place-items: end start; padding: 1.1rem; color: #fff; }
+.carte .visuel b { font: 400 1.6rem/1 var(--titre); }
+.carte .texte { padding: 1.1rem 1.2rem 1.3rem; display: grid; gap: .3rem; align-content: start; }
+.carte .texte strong { font-size: 1.05rem; }
+.carte .texte span { color: var(--encre-douce); font-size: .95rem; }
+.carte .texte em { font-style: normal; font-weight: 700; color: var(--orange); font-size: .92rem; margin-top: .4rem; }
+.pastilles { display: flex; gap: 6px; margin-top: .5rem; }
+.pastilles i { width: 16px; height: 16px; border-radius: 50%; border: 1px solid var(--trait); }
+
+/* Déroulé */
+.deroule { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 1.6rem; counter-reset: e; }
+.deroule li { counter-increment: e; display: grid; gap: .5rem; align-content: start; padding-top: 1.2rem; border-top: 2px solid var(--encre); }
+.deroule li::before { content: "Étape " counter(e); font: 700 .78rem var(--code); letter-spacing: .08em; color: var(--orange); }
+.deroule h3 { font-size: 1.5rem; }
+.deroule p { margin: 0; color: var(--encre-douce); }
+
+/* Tarif */
+.tarif { background: var(--nuit); color: var(--sur-nuit); }
+.tarif .cadre { display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; align-items: center; }
+@media (max-width: 820px) { .tarif .cadre { grid-template-columns: 1fr; } }
+.tarif h2 { font-size: clamp(2rem, 4.5vw, 3rem); }
+.tarif p { color: #b9bdd1; margin: .8rem 0 0; max-width: 46ch; }
+.prix { font: 400 clamp(4rem, 11vw, 6.5rem)/1 var(--titre); color: var(--orange); }
+.prix small { display: block; font: 500 1rem var(--texte); color: #b9bdd1; margin-top: .6rem; }
+.inclus { list-style: none; padding: 0; margin: 1.6rem 0 0; display: grid; gap: .55rem; }
+.inclus li { display: flex; gap: .6rem; }
+.inclus li::before { content: "✓"; color: var(--orange); font-weight: 700; }
+
+.contact .cadre { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: end; gap: 1.5rem; }
+.contact h2 { font-size: clamp(1.8rem, 4vw, 2.6rem); }
+.numero { font: 700 clamp(1.4rem, 4vw, 2rem) var(--code); text-decoration: none; user-select: all; }
+footer { padding-block: 2rem; border-top: 1px solid var(--trait); color: var(--encre-douce); font-size: .9rem; }
+footer .cadre { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1rem; }
+</style>
+</head>
+<body>
+
+<header class="entete">
+  <div class="cadre">
+    <a class="marque" href="../index.html"><span class="rond" aria-hidden="true"></span>Rob Jill <small>· Coup d'Œil</small></a>
+    <nav><a href="../index.html">Le site Rob Jill</a></nav>
+  </div>
+</header>
+
+<main>
+  <section class="accroche" style="padding:0">
+    <div class="cadre">
+      <div>
+        <h1>Votre site est prêt. Il ne manque que votre <em>coup d'œil</em>.</h1>
+        <p class="intro">On vous a appelé, on a préparé un site internet pour votre entreprise. Entrez le code reçu par SMS pour le découvrir, sans engagement.</p>
+        <form class="acces" id="acces" novalidate>
+          <label for="code">Votre code d'aperçu</label>
+          <div class="ligne">
+            <input id="code" name="code" maxlength="6" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="K7M2QX" aria-describedby="code-aide">
+            <button type="submit">Voir mon site</button>
+          </div>
+          <p class="aide" id="code-aide">6 caractères, dans le SMS de Rob. Le lien du SMS ouvre aussi votre aperçu directement.</p>
+          <p class="erreur" id="code-erreur" hidden></p>
+        </form>
+      </div>
+      <div class="oeil" aria-hidden="true">
+        <div class="lentille">
+          <div class="mini visible" data-m="jardin"><div class="barre">Paysages<i></i></div><div class="heros"><b>Des jardins entretenus avec soin</b><span></span></div><div class="grille"><i></i><i></i><i></i><i></i><i></i><i></i></div></div>
+          <div class="mini" data-m="atelier"><div class="barre">PEINTURE<i></i></div><div class="heros"><b>Finitions nettes, délais tenus</b><span></span></div><div class="grille"><i></i><i></i><i></i><i></i><i></i><i></i></div></div>
+          <div class="mini" data-m="fournil"><div class="barre">Le Fournil<i></i></div><div class="heros"><b>Du pain cuit chaque matin</b><span></span></div><div class="grille"><i></i><i></i><i></i><i></i><i></i><i></i></div></div>
+        </div>
+        <span class="etiquette">Aperçu privé, visible par vous seul</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="modeles" id="modeles">
+    <div class="cadre">
+      <div class="titre-section">
+        <span class="surtitre">Les modèles</span>
+        <h2>Trois styles, adaptés à chaque métier</h2>
+        <p>Chaque site est ensuite personnalisé avec vos photos, vos services et vos coordonnées.</p>
+      </div>
+      <div class="cartes">
+        <a class="carte" href="../modeles/jardin/index.html">
+          <div class="visuel" style="background:#2c5a3c"><b>Jardin</b></div>
+          <div class="texte"><strong>Paysagistes, jardiniers, élagueurs</strong><span>Tons verts, ambiance naturelle et chaleureuse.</span><div class="pastilles"><i style="background:#2c5a3c"></i><i style="background:#c98a2b"></i><i style="background:#e6ebdd"></i></div><em>Voir la démo →</em></div>
+        </a>
+        <a class="carte" href="../modeles/atelier/index.html">
+          <div class="visuel" style="background:#1c2a3a"><b>Atelier</b></div>
+          <div class="texte"><strong>Peintres, plombiers, électriciens, maçons</strong><span>Lignes droites, contraste fort, très lisible sur téléphone.</span><div class="pastilles"><i style="background:#1c2a3a"></i><i style="background:#f2b630"></i><i style="background:#e3e7ee"></i></div><em>Voir la démo →</em></div>
+        </a>
+        <a class="carte" href="../modeles/fournil/index.html">
+          <div class="visuel" style="background:#5a3218"><b>Fournil</b></div>
+          <div class="texte"><strong>Boulangeries, pâtisseries, salons, commerces</strong><span>Élégant et gourmand, pour donner envie de passer.</span><div class="pastilles"><i style="background:#5a3218"></i><i style="background:#b8336a"></i><i style="background:#f1e7da"></i></div><em>Voir la démo →</em></div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="cadre">
+      <div class="titre-section">
+        <span class="surtitre">Comment ça marche</span>
+        <h2>Vous ne payez que si le site vous plaît</h2>
+      </div>
+      <ol class="deroule">
+        <li><h3>Vous regardez</h3><p>Votre aperçu reste en ligne une semaine. Prenez le temps de le parcourir sur votre téléphone.</p></li>
+        <li><h3>On l'ajuste</h3><p>Vos photos, vos textes, vos horaires : on modifie tout ce que vous voulez avant la mise en ligne.</p></li>
+        <li><h3>Il est à vous</h3><p>On signe un contrat simple, et le site est mis en ligne à votre nom, avec votre adresse internet.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="tarif">
+    <div class="cadre">
+      <div>
+        <span class="surtitre">Le tarif</span>
+        <h2>Un vrai site, sans le prix d'une agence</h2>
+        <p>Les agences demandent souvent entre 1 000 et 3 000 €. Ici, tout est compris, sans frais cachés.</p>
+        <ul class="inclus">
+          <li>Site adapté au téléphone et à l'ordinateur</li>
+          <li>Formulaire de demande de devis</li>
+          <li>Lien vers votre fiche Google et vos réseaux</li>
+          <li>Mentions légales rédigées pour vous</li>
+        </ul>
+      </div>
+      <div class="prix">300 €<small>une seule fois, puis 15 € par mois pour l'hébergement, le nom de domaine et 2 modifications incluses</small></div>
+    </div>
+  </section>
+
+  <section class="contact">
+    <div class="cadre">
+      <div>
+        <span class="surtitre">Une question ?</span>
+        <h2>Appelez Rob directement</h2>
+      </div>
+      <a class="numero" href="tel:+33600000000">06 00 00 00 00</a>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="cadre">
+    <span>© Rob Jill · Création de sites internet pour artisans et commerçants</span>
+    <span>Les aperçus sont privés et ne sont pas référencés sur Google.</span>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var champ = document.getElementById("code");
+  var erreur = document.getElementById("code-erreur");
+  var permis = /^[ABCDEFGHJKMNPQRSTUVWXYZ23456789]{6}$/;
+  function nettoyer(v) { return (v || "").toUpperCase().replace(/[^A-Z0-9]/g, "").replace(/O/g, "0").slice(0, 6); }
+  champ.addEventListener("input", function () { champ.value = nettoyer(champ.value).replace(/0/g, "O"); erreur.hidden = true; });
+  document.getElementById("acces").addEventListener("submit", function (e) {
+    e.preventDefault();
+    var code = nettoyer(champ.value).replace(/0/g, "O");
+    if (!permis.test(code)) {
+      erreur.textContent = code.length < 6
+        ? "Le code fait 6 caractères. Vérifiez le SMS reçu."
+        : "Ce code n'est pas valide. Vérifiez qu'il n'y a pas de faute de frappe.";
+      erreur.hidden = false;
+      champ.focus();
+      return;
+    }
+    window.location.href = "../a/" + code + "/index.html";
+  });
+  // Préremplit le code s'il est dans le lien (…/#K7M2QX)
+  var h = nettoyer(location.hash.slice(1));
+  if (h.length === 6) champ.value = h;
+
+  // L'œilleton fait défiler les trois modèles
+  var minis = document.querySelectorAll(".mini");
+  if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    var i = 0;
+    setInterval(function () {
+      minis[i].classList.remove("visible");
+      i = (i + 1) % minis.length;
+      minis[i].classList.add("visible");
+    }, 3200);
+  }
+})();
+</script>
+</body>
+</html>

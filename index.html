@@ -4,228 +4,481 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="claude:viewport-fit-sides" content="cover">
-<meta name="robots" content="noindex, nofollow">
-<title>Coup d'Œil · Rob Jill</title>
-<meta name="description" content="Découvrez l'aperçu privé du site internet préparé pour votre entreprise par Rob Jill.">
+<title>Rob Jill · Sites internet pour artisans</title>
+<meta name="description" content="Rob Jill crée des sites internet pour artisans, commerçants et indépendants en Normandie. Site une page dès 300 €, vous payez après avoir vu votre site.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gloock&family=Instrument+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap">
 <style>
-/* Mise en page : une colonne de texte face à un « œilleton » rond qui montre un site en miniature,
-   puis bandes horizontales (modèles, déroulé, tarif). Le code d'accès est l'élément central. */
+/* Mise en page : colonne éditoriale alignée à gauche. L'accroche montre trois vrais sites en éventail ;
+   ensuite des bandes alternées (papier / blanc / nuit) pour les formules, les exemples, la méthode et le contact. */
 :root {
   --papier: #f2f3f7; --surface: #ffffff; --encre: #181b2d; --encre-douce: #565b73;
-  --trait: #dcdfe9; --orange: #f2672e; --orange-doux: #fde3d6; --nuit: #181b2d; --sur-nuit: #f2f3f7;
-  --titre: "Gloock", Georgia, serif; --texte: "Instrument Sans", system-ui, sans-serif;
-  --code: "JetBrains Mono", ui-monospace, Menlo, monospace;
+  --trait: #dcdfe9; --orange: #f2672e; --orange-doux: #fde6da; --nuit: #181b2d; --sur-nuit: #eef0f7; --sur-nuit-doux: #b6bad0;
+  --titre: "Gloock", Georgia, serif; --texte: "Instrument Sans", system-ui, sans-serif; --code: "JetBrains Mono", ui-monospace, Menlo, monospace;
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --papier: #111321; --surface: #1a1d2e; --encre: #eceef6; --encre-douce: #a4a9c0;
-    --trait: #2b2f45; --orange: #ff8650; --orange-doux: #3a2419; --nuit: #0b0c16; --sur-nuit: #eceef6;
+    --papier: #111321; --surface: #191c2d; --encre: #eceef6; --encre-douce: #a4a9c0;
+    --trait: #2b2f45; --orange: #ff8650; --orange-doux: #3a2419; --nuit: #0a0b14; --sur-nuit: #eceef6; --sur-nuit-doux: #9ea3ba;
     color-scheme: dark;
   }
 }
 :root[data-theme="dark"] {
-  --papier: #111321; --surface: #1a1d2e; --encre: #eceef6; --encre-douce: #a4a9c0;
-  --trait: #2b2f45; --orange: #ff8650; --orange-doux: #3a2419; --nuit: #0b0c16; --sur-nuit: #eceef6;
+  --papier: #111321; --surface: #191c2d; --encre: #eceef6; --encre-douce: #a4a9c0;
+  --trait: #2b2f45; --orange: #ff8650; --orange-doux: #3a2419; --nuit: #0a0b14; --sur-nuit: #eceef6; --sur-nuit-doux: #9ea3ba;
   color-scheme: dark;
 }
 *, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
 body { margin: 0; background: var(--papier); color: var(--encre); font: 17px/1.6 var(--texte); }
-.cadre { width: min(1120px, 100%); margin-inline: auto; padding-left: max(20px, env(safe-area-inset-left, 0px)); padding-right: max(20px, env(safe-area-inset-right, 0px)); }
+.cadre { width: min(1160px, 100%); margin-inline: auto; padding-left: max(20px, env(safe-area-inset-left, 0px)); padding-right: max(20px, env(safe-area-inset-right, 0px)); }
 h1, h2, h3 { font-family: var(--titre); font-weight: 400; line-height: 1.05; margin: 0; text-wrap: balance; }
+h2 { font-size: clamp(2rem, 4.6vw, 3.1rem); }
 a { color: inherit; }
 :focus-visible { outline: 3px solid var(--orange); outline-offset: 3px; }
+.surtitre { font: 700 .76rem var(--texte); letter-spacing: .16em; text-transform: uppercase; color: var(--orange); }
+.titre-section { display: grid; gap: .7rem; margin-bottom: 2.4rem; max-width: 60ch; }
+.titre-section p { margin: 0; color: var(--encre-douce); }
+section { padding-block: clamp(3.5rem, 8vw, 6rem); }
+.bouton { display: inline-flex; align-items: center; justify-content: center; gap: .5rem; padding: .9rem 1.4rem; border-radius: 12px; font: 700 1rem var(--texte); text-decoration: none; border: 2px solid transparent; cursor: pointer; }
+.bouton-plein { background: var(--encre); color: var(--papier); }
+.bouton-orange { background: var(--orange); color: #1b0d05; }
+.bouton-lien { padding-inline: .2rem; border-radius: 0; border-bottom: 2px solid var(--orange); }
 
-.entete { padding-block: 1.4rem; }
-.entete .cadre { display: flex; justify-content: space-between; align-items: center; gap: 1rem; }
-.marque { display: flex; align-items: center; gap: .6rem; text-decoration: none; font-weight: 700; letter-spacing: .01em; }
-.marque .rond { width: 30px; height: 30px; border-radius: 50%; background: var(--encre); display: grid; place-items: center; }
+/* En-tête */
+.entete { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 30; background: color-mix(in srgb, var(--papier) 92%, transparent); backdrop-filter: blur(8px); border-bottom: 1px solid var(--trait); }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 31; background: var(--papier); }
+.entete .cadre { display: flex; align-items: center; justify-content: space-between; gap: 1rem; min-height: 66px; }
+.marque { display: flex; align-items: center; gap: .6rem; text-decoration: none; font-weight: 700; font-size: 1.05rem; }
+.marque .rond { width: 30px; height: 30px; border-radius: 50%; background: var(--encre); display: grid; place-items: center; flex: none; }
 .marque .rond::after { content: ""; width: 10px; height: 10px; border-radius: 50%; background: var(--orange); }
-.marque small { font-weight: 500; color: var(--encre-douce); }
-.entete nav a { font-weight: 600; text-decoration: none; font-size: .95rem; }
+.nav { display: flex; align-items: center; gap: 1.4rem; }
+.nav a { text-decoration: none; font-weight: 600; font-size: .95rem; }
+.nav .bouton { padding: .55rem 1rem; font-size: .92rem; }
+@media (max-width: 820px) { .nav a:not(.bouton) { display: none; } }
 
 /* Accroche */
-.accroche .cadre { display: grid; grid-template-columns: 1.1fr .9fr; gap: clamp(2rem, 5vw, 4rem); align-items: center; padding-block: clamp(2rem, 6vw, 4.5rem) clamp(3rem, 7vw, 5rem); }
-@media (max-width: 860px) { .accroche .cadre { grid-template-columns: 1fr; } .oeil { order: -1; max-width: 300px; } }
-.accroche h1 { font-size: clamp(2.6rem, 6.5vw, 4.9rem); letter-spacing: -.01em; }
+.accroche .cadre { display: grid; grid-template-columns: 1.05fr .95fr; gap: clamp(2rem, 5vw, 4rem); align-items: center; padding-block: clamp(2.5rem, 7vw, 5rem); }
+@media (max-width: 900px) { .accroche .cadre { grid-template-columns: 1fr; } }
+.accroche h1 { font-size: clamp(2.6rem, 6.4vw, 4.8rem); letter-spacing: -.01em; }
 .accroche h1 em { font-style: normal; color: var(--orange); }
-.accroche .intro { font-size: 1.15rem; color: var(--encre-douce); max-width: 44ch; margin: 1.2rem 0 2rem; }
+.accroche .intro { font-size: 1.15rem; color: var(--encre-douce); max-width: 46ch; margin: 1.2rem 0 1.6rem; }
+.prix-rapides { display: flex; flex-wrap: wrap; gap: .6rem 1.6rem; align-items: baseline; padding-block: 1.1rem; border-block: 1px solid var(--trait); margin-bottom: 1.6rem; }
+.prix-rapides span { color: var(--encre-douce); font-size: .95rem; }
+.prix-rapides b { font: 400 1.9rem/1 var(--titre); color: var(--encre); margin-left: .35rem; }
+.actions { display: flex; flex-wrap: wrap; gap: .8rem 1.4rem; align-items: center; }
 
-.acces { background: var(--surface); border: 1px solid var(--trait); border-radius: 20px; padding: 1.4rem; display: grid; gap: .9rem; max-width: 480px; }
-.acces label { font-weight: 600; font-size: .95rem; }
-.acces .ligne { display: flex; gap: .6rem; flex-wrap: wrap; }
-.acces input { flex: 1 1 200px; min-width: 0; font: 700 1.6rem/1 var(--code); letter-spacing: .35em; text-transform: uppercase; padding: .8rem 1rem; border-radius: 12px; border: 2px solid var(--trait); background: var(--papier); color: var(--encre); }
-.acces input::placeholder { color: var(--trait); }
-.acces button { font: 700 1rem var(--texte); padding: .9rem 1.4rem; border-radius: 12px; border: 0; background: var(--orange); color: #1b0d05; cursor: pointer; }
-.acces .aide { margin: 0; font-size: .9rem; color: var(--encre-douce); }
-.acces .erreur { margin: 0; font-size: .92rem; font-weight: 600; color: var(--orange); }
+/* Éventail de vrais sites */
+.eventail { position: relative; height: clamp(360px, 46vw, 520px); }
+@media (max-width: 900px) { .eventail { height: 380px; max-width: 520px; width: 100%; justify-self: center; } }
+.ecran { position: absolute; width: 62%; aspect-ratio: 9 / 16; max-height: 100%; border-radius: 22px; overflow: hidden; background: var(--surface); border: 6px solid var(--encre); box-shadow: 0 30px 50px -28px rgba(24,27,45,.55); }
+.ecran:nth-child(1) { left: 0; top: 8%; transform: rotate(-7deg); }
+.ecran:nth-child(2) { left: 19%; top: 0; z-index: 2; }
+.ecran:nth-child(3) { right: 0; top: 9%; transform: rotate(7deg); }
+.ecran iframe { width: 390px; height: 693px; border: 0; transform-origin: 0 0; pointer-events: none; display: block; }
+.ecran .nom { position: absolute; left: 10px; bottom: 10px; z-index: 3; background: var(--encre); color: var(--papier); font: 600 .72rem var(--texte); padding: .25rem .6rem; border-radius: 999px; }
 
-/* L'œilleton : un site miniature vu à travers une lentille */
-.oeil { position: relative; aspect-ratio: 1; width: 100%; max-width: 440px; justify-self: center; border-radius: 50%; background: var(--nuit); padding: 7%; box-shadow: 0 0 0 10px var(--surface), 0 0 0 11px var(--trait), 0 30px 60px -30px rgba(24,27,45,.5); }
-.lentille { width: 100%; height: 100%; border-radius: 50%; overflow: hidden; position: relative; background: #f6f7f2; }
-.lentille::after { content: ""; position: absolute; inset: 0; border-radius: 50%; background: radial-gradient(circle at 32% 28%, rgba(255,255,255,.45), transparent 32%), radial-gradient(circle, transparent 58%, rgba(0,0,0,.35)); pointer-events: none; }
-.mini { position: absolute; inset: 0; display: grid; grid-template-rows: 11% 38% 1fr; transition: opacity .6s ease; }
-.mini .barre { display: flex; align-items: center; justify-content: space-between; padding: 0 22%; font: 700 .62rem var(--texte); }
-.mini .barre i { width: 22%; height: 34%; border-radius: 6px; }
-.mini .heros { padding: 6% 20%; display: grid; align-content: center; gap: 6%; color: #fff; }
-.mini .heros b { font: 400 1.25rem/1.05 var(--titre); }
-.mini .heros span { width: 46%; height: 9px; border-radius: 5px; }
-.mini .grille { display: grid; grid-template-columns: repeat(3, 1fr); gap: 5%; padding: 7% 18% 0; align-content: start; }
-.mini .grille i { aspect-ratio: 4 / 3; border-radius: 6px; }
-.mini[data-m="jardin"] { background: #f6f7f2; } .mini[data-m="jardin"] .heros { background: #2c5a3c; } .mini[data-m="jardin"] i, .mini[data-m="jardin"] .heros span { background: #c98a2b; } .mini[data-m="jardin"] .grille i { background: #d5dccb; }
-.mini[data-m="atelier"] { background: #f4f5f7; } .mini[data-m="atelier"] .heros { background: #1c2a3a; } .mini[data-m="atelier"] i, .mini[data-m="atelier"] .heros span { background: #f2b630; } .mini[data-m="atelier"] .grille i { background: #d3d9e3; }
-.mini[data-m="fournil"] { background: #fbf8f3; } .mini[data-m="fournil"] .heros { background: #5a3218; } .mini[data-m="fournil"] i, .mini[data-m="fournil"] .heros span { background: #b8336a; } .mini[data-m="fournil"] .grille i { background: #ecdccb; }
-.mini:not(.visible) { opacity: 0; }
-@media (prefers-reduced-motion: reduce) { .mini { transition: none; } }
-.oeil .etiquette { position: absolute; left: 50%; bottom: -14px; transform: translateX(-50%); background: var(--surface); border: 1px solid var(--trait); color: var(--encre); border-radius: 999px; padding: .3rem .9rem; font: 600 .8rem var(--texte); white-space: nowrap; }
+/* Bandeau d'engagements */
+.engagements { background: var(--surface); border-block: 1px solid var(--trait); }
+.engagements ul { list-style: none; margin: 0; padding-block: 1.6rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.2rem 2rem; }
+.engagements li { display: grid; gap: .15rem; }
+.engagements b { font: 400 1.5rem/1.1 var(--titre); }
+.engagements span { color: var(--encre-douce); font-size: .95rem; }
 
-section { padding-block: clamp(3.5rem, 8vw, 5.5rem); }
-.titre-section { display: grid; gap: .6rem; margin-bottom: 2.2rem; max-width: 58ch; }
-.titre-section h2 { font-size: clamp(2rem, 4.5vw, 3rem); }
-.titre-section p { margin: 0; color: var(--encre-douce); }
-.surtitre { font: 700 .76rem var(--texte); letter-spacing: .16em; text-transform: uppercase; color: var(--orange); }
+/* Formules */
+.formules { display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); gap: 1.2rem; align-items: stretch; }
+.formule { background: var(--surface); border: 1px solid var(--trait); border-radius: 20px; padding: 1.8rem; display: grid; grid-template-rows: auto auto auto 1fr auto; gap: .8rem; }
+.formule.vedette { background: var(--nuit); color: var(--sur-nuit); border-color: var(--nuit); }
+.formule .etiquette { justify-self: start; font: 700 .72rem var(--texte); letter-spacing: .12em; text-transform: uppercase; padding: .25rem .6rem; border-radius: 999px; background: var(--orange-doux); color: var(--orange); }
+.formule.vedette .etiquette { background: var(--orange); color: #1b0d05; }
+.formule h3 { font-size: 1.6rem; }
+.formule .montant { font: 400 3rem/1 var(--titre); }
+.formule .montant small { font: 500 .95rem var(--texte); color: var(--encre-douce); margin-left: .3rem; }
+.formule.vedette .montant small, .formule.vedette p { color: var(--sur-nuit-doux); }
+.formule p { margin: 0; color: var(--encre-douce); }
+.formule ul { list-style: none; padding: 0; margin: .4rem 0 0; display: grid; gap: .5rem; align-content: start; }
+.formule li { display: flex; gap: .6rem; }
+.formule li::before { content: "✓"; color: var(--orange); font-weight: 700; flex: none; }
+.formule .bouton { margin-top: .6rem; }
+.formule.vedette .bouton-plein { background: var(--orange); color: #1b0d05; }
+.note { margin: 1.4rem 0 0; color: var(--encre-douce); font-size: .92rem; max-width: 75ch; }
 
-/* Modèles */
-.modeles { background: var(--surface); border-block: 1px solid var(--trait); }
-.cartes { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.2rem; }
-.carte { display: grid; grid-template-rows: auto 1fr; border-radius: 18px; overflow: hidden; border: 1px solid var(--trait); text-decoration: none; background: var(--papier); transition: transform .2s ease; }
-.carte:hover { transform: translateY(-3px); }
-@media (prefers-reduced-motion: reduce) { .carte { transition: none; } .carte:hover { transform: none; } }
-.carte .visuel { aspect-ratio: 16 / 10; max-width: 100%; display: grid; place-items: end start; padding: 1.1rem; color: #fff; }
-.carte .visuel b { font: 400 1.6rem/1 var(--titre); }
-.carte .texte { padding: 1.1rem 1.2rem 1.3rem; display: grid; gap: .3rem; align-content: start; }
-.carte .texte strong { font-size: 1.05rem; }
-.carte .texte span { color: var(--encre-douce); font-size: .95rem; }
-.carte .texte em { font-style: normal; font-weight: 700; color: var(--orange); font-size: .92rem; margin-top: .4rem; }
-.pastilles { display: flex; gap: 6px; margin-top: .5rem; }
-.pastilles i { width: 16px; height: 16px; border-radius: 50%; border: 1px solid var(--trait); }
+/* Réalisations */
+.realisations { background: var(--surface); border-block: 1px solid var(--trait); }
+.exemples { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.4rem; }
+.exemple { display: grid; gap: .9rem; text-decoration: none; }
+.vignette { position: relative; aspect-ratio: 16 / 11; max-width: 100%; border-radius: 16px; overflow: hidden; border: 1px solid var(--trait); background: var(--papier); }
+.vignette iframe { position: absolute; top: 0; left: 0; width: 1280px; height: 880px; border: 0; transform-origin: 0 0; pointer-events: none; }
+.vignette::after { content: "Voir le site →"; position: absolute; inset: auto 12px 12px auto; background: var(--encre); color: var(--papier); font: 700 .8rem var(--texte); padding: .4rem .8rem; border-radius: 999px; opacity: 0; transform: translateY(6px); transition: opacity .2s, transform .2s; }
+.exemple:hover .vignette::after, .exemple:focus-visible .vignette::after { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) { .vignette::after { transition: none; } }
+.exemple .infos { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; flex-wrap: wrap; }
+.exemple strong { font-size: 1.1rem; }
+.exemple .meta { color: var(--encre-douce); font-size: .92rem; }
+.exemple .formule-tag { font: 700 .72rem var(--code); color: var(--orange); letter-spacing: .04em; }
+.avertissement { margin: 1.8rem 0 0; font-size: .92rem; color: var(--encre-douce); }
 
-/* Déroulé */
-.deroule { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 1.6rem; counter-reset: e; }
-.deroule li { counter-increment: e; display: grid; gap: .5rem; align-content: start; padding-top: 1.2rem; border-top: 2px solid var(--encre); }
-.deroule li::before { content: "Étape " counter(e); font: 700 .78rem var(--code); letter-spacing: .08em; color: var(--orange); }
-.deroule h3 { font-size: 1.5rem; }
-.deroule p { margin: 0; color: var(--encre-douce); }
+/* Avant / après */
+.comparateur { position: relative; border-radius: 20px; overflow: hidden; border: 1px solid var(--trait); aspect-ratio: 16 / 9; max-width: 100%; background: var(--surface); user-select: none; }
+@media (max-width: 640px) { .comparateur { aspect-ratio: 4 / 5; } }
+.face { position: absolute; inset: 0; overflow: hidden; }
+.face.apres { clip-path: inset(0 0 0 var(--coupe, 50%)); }
+.etiquette-face { position: absolute; top: 14px; z-index: 3; font: 700 .72rem var(--texte); letter-spacing: .12em; padding: .3rem .7rem; border-radius: 999px; background: var(--encre); color: var(--papier); }
+.avant .etiquette-face { left: 14px; }
+.apres .etiquette-face { right: 14px; background: var(--orange); color: #1b0d05; }
+.vieux { background: #ffffe0; color: #000; font-family: "Times New Roman", Times, serif; height: 100%; padding: 2.4rem 1.6rem 1rem; }
+.vieux .bandeau { background: #0000cc; color: #ffff00; font: bold 1.05rem Arial, sans-serif; text-align: center; padding: .4rem; }
+.vieux h4 { color: #cc0000; font-size: 1.6rem; text-align: center; margin: .8rem 0; text-decoration: underline; }
+.vieux .bloc { display: flex; gap: 1rem; align-items: flex-start; }
+.vieux .photo { width: 130px; height: 90px; border: 2px dashed #999; display: grid; place-items: center; color: #777; flex: none; font-size: .9rem; }
+.vieux p { margin: 0 0 .5rem; font-size: .98rem; }
+.vieux marquee, .vieux .defile { color: #008000; font-weight: bold; }
+.vieux .compteur { font: .85rem "Courier New", monospace; background: #000; color: #0f0; display: inline-block; padding: .1rem .4rem; margin-top: .6rem; }
+.neuf { height: 100%; display: grid; grid-template-rows: auto 1fr; background: #f4f5f7; color: #151d29; font-family: "Instrument Sans", system-ui, sans-serif; }
+.neuf .barre { display: flex; justify-content: space-between; align-items: center; padding: .9rem 1.6rem; background: #fff; border-bottom: 1px solid #e3e7ee; font-weight: 700; }
+.neuf .barre span { background: #f2b630; padding: .35rem .8rem; border-radius: 4px; font-size: .85rem; }
+.neuf .heros { background: #1c2a3a; color: #fff; padding: clamp(1.4rem, 4vw, 3rem) 1.6rem; display: grid; align-content: center; gap: .8rem; }
+.neuf .heros small { color: #f2b630; font-weight: 700; letter-spacing: .12em; font-size: .72rem; }
+.neuf .heros b { font: 700 clamp(1.4rem, 3.4vw, 2.6rem)/1.05 "Archivo Narrow", "Arial Narrow", sans-serif; text-transform: uppercase; max-width: 16ch; }
+.neuf .heros i { font-style: normal; opacity: .85; max-width: 40ch; font-size: .95rem; }
+.neuf .heros em { font-style: normal; justify-self: start; background: #f2b630; color: #151d29; font-weight: 700; padding: .55rem 1rem; border-radius: 4px; font-size: .9rem; }
+.poignee { position: absolute; top: 0; bottom: 0; left: var(--coupe, 50%); width: 3px; background: var(--orange); z-index: 4; transform: translateX(-50%); pointer-events: none; }
+.poignee::after { content: "⇆"; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 44px; height: 44px; border-radius: 50%; background: var(--orange); color: #1b0d05; display: grid; place-items: center; font-weight: 700; }
+.comparateur input[type="range"] { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; cursor: ew-resize; z-index: 5; margin: 0; }
+.legende { margin: 1rem 0 0; color: var(--encre-douce); font-size: .92rem; }
 
-/* Tarif */
-.tarif { background: var(--nuit); color: var(--sur-nuit); }
-.tarif .cadre { display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; align-items: center; }
-@media (max-width: 820px) { .tarif .cadre { grid-template-columns: 1fr; } }
-.tarif h2 { font-size: clamp(2rem, 4.5vw, 3rem); }
-.tarif p { color: #b9bdd1; margin: .8rem 0 0; max-width: 46ch; }
-.prix { font: 400 clamp(4rem, 11vw, 6.5rem)/1 var(--titre); color: var(--orange); }
-.prix small { display: block; font: 500 1rem var(--texte); color: #b9bdd1; margin-top: .6rem; }
-.inclus { list-style: none; padding: 0; margin: 1.6rem 0 0; display: grid; gap: .55rem; }
-.inclus li { display: flex; gap: .6rem; }
-.inclus li::before { content: "✓"; color: var(--orange); font-weight: 700; }
+/* Méthode */
+.methode { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 1.4rem; counter-reset: e; }
+.methode li { counter-increment: e; padding-top: 1.1rem; border-top: 2px solid var(--encre); display: grid; gap: .45rem; align-content: start; }
+.methode li::before { content: "Étape " counter(e); font: 700 .76rem var(--code); color: var(--orange); letter-spacing: .06em; }
+.methode h3 { font-size: 1.4rem; }
+.methode p { margin: 0; color: var(--encre-douce); font-size: .96rem; }
 
-.contact .cadre { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: end; gap: 1.5rem; }
-.contact h2 { font-size: clamp(1.8rem, 4vw, 2.6rem); }
-.numero { font: 700 clamp(1.4rem, 4vw, 2rem) var(--code); text-decoration: none; user-select: all; }
-footer { padding-block: 2rem; border-top: 1px solid var(--trait); color: var(--encre-douce); font-size: .9rem; }
+/* Pourquoi */
+.pourquoi { background: var(--nuit); color: var(--sur-nuit); }
+.pourquoi .titre-section p { color: var(--sur-nuit-doux); }
+.atouts { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 2rem 2.4rem; }
+.atouts div { display: grid; gap: .4rem; align-content: start; }
+.atouts h3 { font-size: 1.45rem; }
+.atouts p { margin: 0; color: var(--sur-nuit-doux); }
+
+/* Aperçu privé */
+.code-apercu { background: var(--orange-doux); }
+.code-apercu .cadre { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 1.4rem; }
+.code-apercu h2 { font-size: clamp(1.7rem, 3.6vw, 2.4rem); }
+.code-apercu p { margin: .4rem 0 0; color: var(--encre-douce); }
+.code-apercu form { display: flex; gap: .6rem; flex-wrap: wrap; }
+.code-apercu input { width: 12ch; min-width: 0; font: 700 1.3rem var(--code); letter-spacing: .3em; text-transform: uppercase; padding: .75rem .9rem; border-radius: 12px; border: 2px solid var(--trait); background: var(--surface); color: var(--encre); }
+.code-apercu .erreur { flex-basis: 100%; margin: 0; color: var(--orange); font-weight: 600; font-size: .92rem; }
+
+/* FAQ */
+.faq { display: grid; gap: .8rem; max-width: 860px; }
+.faq details { background: var(--surface); border: 1px solid var(--trait); border-radius: 14px; padding: 1.1rem 1.3rem; }
+.faq summary { cursor: pointer; font-weight: 700; font-size: 1.05rem; list-style: none; display: flex; justify-content: space-between; gap: 1rem; }
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after { content: "+"; color: var(--orange); font-size: 1.4rem; line-height: 1; }
+.faq details[open] summary::after { content: "−"; }
+.faq p { margin: .7rem 0 0; color: var(--encre-douce); }
+
+/* Contact */
+.contact .cadre { display: grid; grid-template-columns: .9fr 1.1fr; gap: 2.6rem; align-items: start; }
+@media (max-width: 860px) { .contact .cadre { grid-template-columns: 1fr; } }
+.coords { display: grid; gap: 1.4rem; }
+.coords dl { margin: 0; display: grid; gap: 1rem; }
+.coords dt { font: 700 .76rem var(--texte); letter-spacing: .12em; text-transform: uppercase; color: var(--encre-douce); }
+.coords dd { margin: 0; font-size: 1.1rem; font-weight: 600; }
+.coords .numero { font: 700 clamp(1.5rem, 4vw, 2rem) var(--code); text-decoration: none; user-select: all; }
+.formulaire { background: var(--surface); border: 1px solid var(--trait); border-radius: 20px; padding: 1.6rem; display: grid; gap: 1rem; }
+.deux { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+@media (max-width: 520px) { .deux { grid-template-columns: 1fr; } }
+.formulaire label { display: grid; gap: .35rem; font-weight: 600; font-size: .92rem; min-width: 0; }
+.formulaire input, .formulaire select, .formulaire textarea { font: inherit; padding: .75rem .85rem; border-radius: 10px; border: 1px solid var(--trait); background: var(--papier); color: var(--encre); width: 100%; }
+.formulaire textarea { min-height: 110px; resize: vertical; }
+.formulaire .ok { margin: 0; padding: .8rem 1rem; border-radius: 10px; background: var(--orange-doux); font-weight: 600; }
+
+footer { border-top: 1px solid var(--trait); padding-block: 2rem; color: var(--encre-douce); font-size: .9rem; }
 footer .cadre { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1rem; }
+footer a { color: var(--encre); }
 </style>
 </head>
 <body>
 
 <header class="entete">
   <div class="cadre">
-    <a class="marque" href="#"><span class="rond" aria-hidden="true"></span>Rob Jill <small>· Coup d'Œil</small></a>
-    <nav><a href="#modeles">Voir les modèles</a></nav>
+    <a class="marque" href="#haut"><span class="rond" aria-hidden="true"></span>Rob Jill</a>
+    <nav class="nav" aria-label="Navigation principale">
+      <a href="#formules">Formules</a>
+      <a href="#realisations">Exemples</a>
+      <a href="#methode">Méthode</a>
+      <a href="#faq">Questions</a>
+      <a class="bouton bouton-plein" href="#contact">Demander un devis</a>
+    </nav>
   </div>
 </header>
 
-<main>
+<main id="haut">
   <section class="accroche" style="padding:0">
     <div class="cadre">
       <div>
-        <h1>Votre site est prêt. Il ne manque que votre <em>coup d'œil</em>.</h1>
-        <p class="intro">On vous a appelé, on a préparé un site internet pour votre entreprise. Entrez le code reçu par SMS pour le découvrir, sans engagement.</p>
-        <form class="acces" id="acces" novalidate>
-          <label for="code">Votre code d'aperçu</label>
-          <div class="ligne">
-            <input id="code" name="code" maxlength="6" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="K7M2QX" aria-describedby="code-aide">
-            <button type="submit">Voir mon site</button>
-          </div>
-          <p class="aide" id="code-aide">6 caractères, dans le SMS de Rob. Le lien du SMS ouvre aussi votre aperçu directement.</p>
-          <p class="erreur" id="code-erreur" hidden></p>
-        </form>
-      </div>
-      <div class="oeil" aria-hidden="true">
-        <div class="lentille">
-          <div class="mini visible" data-m="jardin"><div class="barre">Paysages<i></i></div><div class="heros"><b>Des jardins entretenus avec soin</b><span></span></div><div class="grille"><i></i><i></i><i></i><i></i><i></i><i></i></div></div>
-          <div class="mini" data-m="atelier"><div class="barre">PEINTURE<i></i></div><div class="heros"><b>Finitions nettes, délais tenus</b><span></span></div><div class="grille"><i></i><i></i><i></i><i></i><i></i><i></i></div></div>
-          <div class="mini" data-m="fournil"><div class="barre">Le Fournil<i></i></div><div class="heros"><b>Du pain cuit chaque matin</b><span></span></div><div class="grille"><i></i><i></i><i></i><i></i><i></i><i></i></div></div>
+        <span class="surtitre">Création de sites internet · Normandie</span>
+        <h1 style="margin-top:.8rem">Un vrai site pour votre entreprise, <em>sans le prix d'une agence</em>.</h1>
+        <p class="intro">Je crée des sites pour les artisans, commerçants et indépendants. Je prépare votre site d'abord : vous ne payez que s'il vous plaît.</p>
+        <div class="prix-rapides">
+          <span>Une page <b>300 €</b></span>
+          <span>Plusieurs pages <b>500 €</b></span>
         </div>
-        <span class="etiquette">Aperçu privé, visible par vous seul</span>
+        <div class="actions">
+          <a class="bouton bouton-plein" href="#contact">Demander mon site</a>
+          <a class="bouton bouton-lien" href="#realisations">Voir des exemples</a>
+        </div>
+      </div>
+      <div class="eventail" aria-hidden="true">
+        <div class="ecran"><iframe src="realisations/jardins-pays-de-caux/index.html" loading="lazy" tabindex="-1" title=""></iframe><span class="nom">Paysagiste</span></div>
+        <div class="ecran"><iframe src="realisations/il-forno-di-marco/index.html" loading="lazy" tabindex="-1" title=""></iframe><span class="nom">Pizzeria</span></div>
+        <div class="ecran"><iframe src="realisations/menuiserie-vasseur/index.html" loading="lazy" tabindex="-1" title=""></iframe><span class="nom">Menuisier</span></div>
       </div>
     </div>
   </section>
 
-  <section class="modeles" id="modeles">
+  <div class="engagements">
+    <ul class="cadre">
+      <li><b>Vous voyez avant de payer</b><span>Votre site est prêt avant toute signature.</span></li>
+      <li><b>3 à 7 jours</b><span>de création selon la formule.</span></li>
+      <li><b>Un seul interlocuteur</b><span>Vous parlez toujours à Rob.</span></li>
+      <li><b>Un contrat écrit</b><span>Le site est à votre nom une fois payé.</span></li>
+    </ul>
+  </div>
+
+  <section id="formules">
     <div class="cadre">
       <div class="titre-section">
-        <span class="surtitre">Les modèles</span>
-        <h2>Trois styles, adaptés à chaque métier</h2>
-        <p>Chaque site est ensuite personnalisé avec vos photos, vos services et vos coordonnées.</p>
+        <span class="surtitre">Formules</span>
+        <h2>Des tarifs fixes, annoncés dès le départ</h2>
+        <p>Choisissez selon la taille de votre activité. Chaque site est personnalisé avec vos photos, vos couleurs et vos textes.</p>
       </div>
-      <div class="cartes">
-        <a class="carte" href="modeles/jardin/index.html">
-          <div class="visuel" style="background:#2c5a3c"><b>Jardin</b></div>
-          <div class="texte"><strong>Paysagistes, jardiniers, élagueurs</strong><span>Tons verts, ambiance naturelle et chaleureuse.</span><div class="pastilles"><i style="background:#2c5a3c"></i><i style="background:#c98a2b"></i><i style="background:#e6ebdd"></i></div><em>Voir la démo →</em></div>
-        </a>
-        <a class="carte" href="modeles/atelier/index.html">
-          <div class="visuel" style="background:#1c2a3a"><b>Atelier</b></div>
-          <div class="texte"><strong>Peintres, plombiers, électriciens, maçons</strong><span>Lignes droites, contraste fort, très lisible sur téléphone.</span><div class="pastilles"><i style="background:#1c2a3a"></i><i style="background:#f2b630"></i><i style="background:#e3e7ee"></i></div><em>Voir la démo →</em></div>
-        </a>
-        <a class="carte" href="modeles/fournil/index.html">
-          <div class="visuel" style="background:#5a3218"><b>Fournil</b></div>
-          <div class="texte"><strong>Boulangeries, pâtisseries, salons, commerces</strong><span>Élégant et gourmand, pour donner envie de passer.</span><div class="pastilles"><i style="background:#5a3218"></i><i style="background:#b8336a"></i><i style="background:#f1e7da"></i></div><em>Voir la démo →</em></div>
-        </a>
+      <div class="formules">
+        <article class="formule">
+          <span class="etiquette">Une page</span>
+          <h3>Site vitrine</h3>
+          <div class="montant">300 €</div>
+          <ul>
+            <li>Présentation de votre activité et de vos services</li>
+            <li>Galerie de vos réalisations</li>
+            <li>Formulaire de demande de devis</li>
+            <li>Coordonnées, carte et liens vers vos réseaux</li>
+            <li>Parfait sur téléphone</li>
+          </ul>
+          <a class="bouton bouton-plein" href="#contact">Choisir cette formule</a>
+        </article>
+        <article class="formule vedette">
+          <span class="etiquette">La plus complète</span>
+          <h3>Site plusieurs pages</h3>
+          <div class="montant">500 €</div>
+          <ul>
+            <li>Une page par service, pour mieux ressortir sur Google</li>
+            <li>Pages réalisations, à propos et contact</li>
+            <li>Textes optimisés pour votre ville et votre métier</li>
+            <li>Formulaire de devis détaillé</li>
+            <li>Tout ce que contient le site vitrine</li>
+          </ul>
+          <a class="bouton bouton-plein" href="#contact">Choisir cette formule</a>
+        </article>
+        <article class="formule">
+          <span class="etiquette">Ensuite</span>
+          <h3>Hébergement et suivi</h3>
+          <div class="montant">15 €<small>par mois</small></div>
+          <ul>
+            <li>Hébergement et nom de domaine à votre nom</li>
+            <li>Mises à jour de sécurité</li>
+            <li>2 modifications par mois (photos, horaires, textes)</li>
+            <li>Sans engagement au-delà de 12 mois</li>
+          </ul>
+          <a class="bouton bouton-plein" href="#faq">En savoir plus</a>
+        </article>
       </div>
+      <p class="note">Prix nets, TVA non applicable (article 293 B du CGI). Un projet qui sort de l'ordinaire fait l'objet d'un devis avant tout travail.</p>
     </div>
   </section>
 
-  <section>
+  <section id="realisations" class="realisations">
     <div class="cadre">
       <div class="titre-section">
-        <span class="surtitre">Comment ça marche</span>
-        <h2>Vous ne payez que si le site vous plaît</h2>
+        <span class="surtitre">Exemples</span>
+        <h2>Ce que je peux faire pour votre métier</h2>
+        <p>Six sites de démonstration, un par type d'activité. Cliquez pour les ouvrir et les parcourir comme vos clients le feraient.</p>
       </div>
-      <ol class="deroule">
-        <li><h3>Vous regardez</h3><p>Votre aperçu reste en ligne une semaine. Prenez le temps de le parcourir sur votre téléphone.</p></li>
-        <li><h3>On l'ajuste</h3><p>Vos photos, vos textes, vos horaires : on modifie tout ce que vous voulez avant la mise en ligne.</p></li>
-        <li><h3>Il est à vous</h3><p>On signe un contrat simple, et le site est mis en ligne à votre nom, avec votre adresse internet.</p></li>
+      <div class="exemples">
+        <a class="exemple" href="realisations/menuiserie-vasseur/index.html">
+          <div class="vignette"><iframe src="realisations/menuiserie-vasseur/index.html" loading="lazy" tabindex="-1" title="" aria-hidden="true"></iframe></div>
+          <div class="infos"><strong>Menuiserie Vasseur</strong><span class="formule-tag">UNE PAGE · 300 €</span></div>
+          <span class="meta">Menuisier · Yvetot</span>
+        </a>
+        <a class="exemple" href="realisations/il-forno-di-marco/index.html">
+          <div class="vignette"><iframe src="realisations/il-forno-di-marco/index.html" loading="lazy" tabindex="-1" title="" aria-hidden="true"></iframe></div>
+          <div class="infos"><strong>Il Forno di Marco</strong><span class="formule-tag">UNE PAGE · 300 €</span></div>
+          <span class="meta">Pizzeria · Fécamp</span>
+        </a>
+        <a class="exemple" href="realisations/atelier-coiffure-lou/index.html">
+          <div class="vignette"><iframe src="realisations/atelier-coiffure-lou/index.html" loading="lazy" tabindex="-1" title="" aria-hidden="true"></iframe></div>
+          <div class="infos"><strong>Atelier Coiffure Lou</strong><span class="formule-tag">UNE PAGE · 300 €</span></div>
+          <span class="meta">Salon de coiffure · Dieppe</span>
+        </a>
+        <a class="exemple" href="realisations/jardins-pays-de-caux/index.html">
+          <div class="vignette"><iframe src="realisations/jardins-pays-de-caux/index.html" loading="lazy" tabindex="-1" title="" aria-hidden="true"></iframe></div>
+          <div class="infos"><strong>Les Jardins du Pays de Caux</strong><span class="formule-tag">UNE PAGE · 300 €</span></div>
+          <span class="meta">Paysagiste · Bolbec</span>
+        </a>
+        <a class="exemple" href="realisations/garage-saint-romain/index.html">
+          <div class="vignette"><iframe src="realisations/garage-saint-romain/index.html" loading="lazy" tabindex="-1" title="" aria-hidden="true"></iframe></div>
+          <div class="infos"><strong>Garage Auto Saint-Romain</strong><span class="formule-tag">UNE PAGE · 300 €</span></div>
+          <span class="meta">Garage · Saint-Romain-de-Colbosc</span>
+        </a>
+        <a class="exemple" href="realisations/pain-de-leonie/index.html">
+          <div class="vignette"><iframe src="realisations/pain-de-leonie/index.html" loading="lazy" tabindex="-1" title="" aria-hidden="true"></iframe></div>
+          <div class="infos"><strong>Au Pain de Léonie</strong><span class="formule-tag">UNE PAGE · 300 €</span></div>
+          <span class="meta">Boulangerie · Étretat</span>
+        </a>
+      </div>
+      <p class="avertissement">Ces entreprises sont fictives : leurs noms, numéros et coordonnées sont inventés pour la démonstration.</p>
+    </div>
+  </section>
+
+  <section id="avant-apres">
+    <div class="cadre">
+      <div class="titre-section">
+        <span class="surtitre">Avant / après</span>
+        <h2>La différence se voit tout de suite</h2>
+        <p>Faites glisser la poignée pour comparer un site amateur et un site fait par Rob Jill.</p>
+      </div>
+      <div class="comparateur" id="comparateur">
+        <div class="face avant">
+          <span class="etiquette-face">AVANT</span>
+          <div class="vieux">
+            <div class="bandeau">BIENVENUE SUR NOTRE SITE !!! TEL : 06 XX XX XX XX</div>
+            <h4>Menuiserie Dubois</h4>
+            <div class="bloc">
+              <div class="photo">[ Photo ]</div>
+              <div>
+                <p>Nous somme menuisier depuis 1998. Nous faisons porte, fenetre, escalier et placard. Contactez nous pour un devis !!</p>
+                <p class="defile">PROMOTION : -10% sur les portes ce mois-ci !!!</p>
+                <p>Horaires : Lun-Ven 8h-18h</p>
+              </div>
+            </div>
+            <span class="compteur">Visiteurs : 000847</span>
+          </div>
+        </div>
+        <div class="face apres">
+          <span class="etiquette-face">APRÈS</span>
+          <div class="neuf">
+            <div class="barre">MENUISERIE DUBOIS <span>Devis gratuit</span></div>
+            <div class="heros">
+              <small>MENUISIER · NORMANDIE</small>
+              <b>Portes, fenêtres et escaliers sur mesure</b>
+              <i>Fabrication dans notre atelier et pose soignée. Devis gratuit sous 48 heures.</i>
+              <em>Demander un devis</em>
+            </div>
+          </div>
+        </div>
+        <div class="poignee" aria-hidden="true"></div>
+        <input type="range" id="curseur" min="0" max="100" value="50" aria-label="Comparer avant et après">
+      </div>
+      <p class="legende">Exemple illustratif : ces deux sites sont inventés pour la comparaison.</p>
+    </div>
+  </section>
+
+  <section id="methode" class="realisations">
+    <div class="cadre">
+      <div class="titre-section">
+        <span class="surtitre">Méthode</span>
+        <h2>Cinq étapes, rien de plus</h2>
+      </div>
+      <ol class="methode">
+        <li><h3>On se parle</h3><p>Vous appelez, ou c'est moi qui vous appelle. Quelques minutes suffisent.</p></li>
+        <li><h3>Je prépare votre site</h3><p>À partir de votre fiche Google et de vos photos, en 3 à 7 jours.</p></li>
+        <li><h3>Vous regardez</h3><p>Vous recevez un lien privé par SMS et vous le découvrez chez vous.</p></li>
+        <li><h3>On ajuste</h3><p>Textes, photos, couleurs : je modifie jusqu'à ce qu'il vous ressemble.</p></li>
+        <li><h3>Mise en ligne</h3><p>On signe le contrat, vous payez, et le site est en ligne à votre nom.</p></li>
       </ol>
     </div>
   </section>
 
-  <section class="tarif">
+  <section class="pourquoi">
     <div class="cadre">
-      <div>
-        <span class="surtitre">Le tarif</span>
-        <h2>Un vrai site, sans le prix d'une agence</h2>
-        <p>Les agences demandent souvent entre 1 000 et 3 000 €. Ici, tout est compris, sans frais cachés.</p>
-        <ul class="inclus">
-          <li>Site adapté au téléphone et à l'ordinateur</li>
-          <li>Formulaire de demande de devis</li>
-          <li>Lien vers votre fiche Google et vos réseaux</li>
-          <li>Mentions légales rédigées pour vous</li>
-        </ul>
+      <div class="titre-section">
+        <span class="surtitre">Pourquoi Rob Jill</span>
+        <h2>Simple pour vous, du début à la fin</h2>
+        <p>Je démarre mon activité : mes tarifs sont volontairement bas, et le travail est fait avec le même soin.</p>
       </div>
-      <div class="prix">300 €<small>une seule fois, puis 15 € par mois pour l'hébergement, le nom de domaine et 2 modifications incluses</small></div>
+      <div class="atouts">
+        <div><h3>Aucun risque</h3><p>Le site est prêt avant que vous ne payiez quoi que ce soit. S'il ne vous plaît pas, vous ne me devez rien.</p></div>
+        <div><h3>Un vrai contrat</h3><p>Prix, délais et propriété du site sont écrits noir sur blanc. Une fois payé, le site est à vous.</p></div>
+        <div><h3>Pensé pour le téléphone</h3><p>La plupart de vos clients vous cherchent depuis leur portable : le site est conçu d'abord pour eux.</p></div>
+        <div><h3>Zéro technique pour vous</h3><p>Nom de domaine, hébergement, mises à jour : je m'occupe de tout, vous gardez la main sur le contenu.</p></div>
+      </div>
     </div>
   </section>
 
-  <section class="contact">
+  <section class="code-apercu" id="apercu">
     <div class="cadre">
       <div>
-        <span class="surtitre">Une question ?</span>
-        <h2>Appelez Rob directement</h2>
+        <h2>On vous a envoyé un aperçu ?</h2>
+        <p>Entrez le code à 6 caractères reçu par SMS pour voir votre site.</p>
       </div>
-      <a class="numero" href="tel:+33600000000">06 00 00 00 00</a>
+      <form id="form-code" novalidate>
+        <label for="code" class="sr" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">Code d'aperçu</label>
+        <input id="code" maxlength="6" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="K7M2QX">
+        <button class="bouton bouton-plein" type="submit">Voir mon site</button>
+        <p class="erreur" id="code-erreur" hidden></p>
+      </form>
+    </div>
+  </section>
+
+  <section id="faq">
+    <div class="cadre">
+      <div class="titre-section">
+        <span class="surtitre">Questions fréquentes</span>
+        <h2>Ce qu'on me demande souvent</h2>
+      </div>
+      <div class="faq">
+        <details><summary>Je dois payer avant de voir mon site ?</summary><p>Non. Je prépare une première version et je vous l'envoie par SMS. Si elle vous plaît, on signe le contrat et vous payez 50 % pour lancer la version finale, puis le solde à la mise en ligne.</p></details>
+        <details><summary>À qui appartient le site ?</summary><p>À vous, dès qu'il est payé. Le nom de domaine est réservé à votre nom, et vous pouvez récupérer les fichiers à tout moment.</p></details>
+        <details><summary>Combien de temps faut-il ?</summary><p>Entre 3 et 7 jours pour un site une page, à partir du moment où j'ai vos photos et vos informations. Un peu plus pour un site de plusieurs pages.</p></details>
+        <details><summary>À quoi servent les 15 € par mois ?</summary><p>Ils couvrent l'hébergement, le nom de domaine, les mises à jour de sécurité et 2 petites modifications par mois. L'abonnement dure 12 mois, puis vous pouvez l'arrêter avec un mois de préavis.</p></details>
+        <details><summary>Je n'ai pas de photos professionnelles, c'est un problème ?</summary><p>Non. Des photos prises au téléphone suffisent si elles sont nettes. Je vous dis lesquelles garder et je les mets en valeur.</p></details>
+        <details><summary>Mon site sera-t-il trouvé sur Google ?</summary><p>Il est construit avec les bonnes bases : titres, descriptions, vitesse et lien avec votre fiche Google. Personne ne peut garantir une première place, mais un site bien fait vous aide nettement.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact realisations" id="contact">
+    <div class="cadre">
+      <div class="coords">
+        <div class="titre-section" style="margin:0">
+          <span class="surtitre">Contact</span>
+          <h2>Parlons de votre site</h2>
+          <p>Laissez-moi vos coordonnées, je vous rappelle dans la journée.</p>
+        </div>
+        <dl>
+          <div><dt>Téléphone</dt><dd><a class="numero" href="tel:+33600000000">06 00 00 00 00</a></dd></div>
+          <div><dt>E-mail</dt><dd>contact@robjill.fr</dd></div>
+          <div><dt>Zone</dt><dd>Normandie, et partout en France à distance</dd></div>
+        </dl>
+      </div>
+      <form class="formulaire" id="form-contact" novalidate>
+        <div class="deux">
+          <label for="c-nom">Votre nom<input id="c-nom" autocomplete="name" required></label>
+          <label for="c-tel">Téléphone<input id="c-tel" type="tel" autocomplete="tel" required></label>
+        </div>
+        <div class="deux">
+          <label for="c-entreprise">Entreprise<input id="c-entreprise" autocomplete="organization"></label>
+          <label for="c-formule">Formule<select id="c-formule"><option>Site une page · 300 €</option><option>Site plusieurs pages · 500 €</option><option>Je ne sais pas encore</option></select></label>
+        </div>
+        <label for="c-message">Votre activité en quelques mots<textarea id="c-message" placeholder="Ex. : paysagiste à Rouen, j'ai une fiche Google mais pas de site."></textarea></label>
+        <button class="bouton bouton-orange" type="submit">Envoyer ma demande</button>
+        <p class="ok" id="c-ok" hidden>Votre messagerie s'ouvre avec la demande prête à envoyer. Si rien ne s'ouvre, appelez directement le 06 00 00 00 00.</p>
+      </form>
     </div>
   </section>
 </main>
@@ -233,44 +486,49 @@ footer .cadre { display: flex; flex-wrap: wrap; justify-content: space-between; 
 <footer>
   <div class="cadre">
     <span>© Rob Jill · Création de sites internet pour artisans et commerçants</span>
-    <span>Les aperçus sont privés et ne sont pas référencés sur Google.</span>
+    <span><a href="mentions-legales.html">Mentions légales</a> · <a href="apercu/index.html">Accès aperçu</a></span>
   </div>
 </footer>
 
 <script>
 (function () {
-  var champ = document.getElementById("code");
-  var erreur = document.getElementById("code-erreur");
-  var permis = /^[ABCDEFGHJKMNPQRSTUVWXYZ23456789]{6}$/;
-  function nettoyer(v) { return (v || "").toUpperCase().replace(/[^A-Z0-9]/g, "").replace(/O/g, "0").slice(0, 6); }
-  champ.addEventListener("input", function () { champ.value = nettoyer(champ.value).replace(/0/g, "O"); erreur.hidden = true; });
-  document.getElementById("acces").addEventListener("submit", function (e) {
-    e.preventDefault();
-    var code = nettoyer(champ.value).replace(/0/g, "O");
-    if (!permis.test(code)) {
-      erreur.textContent = code.length < 6
-        ? "Le code fait 6 caractères. Vérifiez le SMS reçu."
-        : "Ce code n'est pas valide. Vérifiez qu'il n'y a pas de faute de frappe.";
-      erreur.hidden = false;
-      champ.focus();
-      return;
-    }
-    window.location.href = "a/" + code + "/index.html";
-  });
-  // Préremplit le code s'il est dans le lien (…/#K7M2QX)
-  var h = nettoyer(location.hash.slice(1));
-  if (h.length === 6) champ.value = h;
-
-  // L'œilleton fait défiler les trois modèles
-  var minis = document.querySelectorAll(".mini");
-  if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-    var i = 0;
-    setInterval(function () {
-      minis[i].classList.remove("visible");
-      i = (i + 1) % minis.length;
-      minis[i].classList.add("visible");
-    }, 3200);
+  // Miniatures : les iframes affichent les vrais sites, réduits à la taille de leur cadre
+  function ajuster() {
+    document.querySelectorAll(".ecran, .vignette").forEach(function (c) {
+      var f = c.querySelector("iframe");
+      if (f) f.style.transform = "scale(" + (c.clientWidth / f.offsetWidth) + ")";
+    });
   }
+  window.addEventListener("resize", ajuster);
+  ajuster();
+
+  // Avant / après
+  var comp = document.getElementById("comparateur");
+  var curseur = document.getElementById("curseur");
+  function couper() { comp.style.setProperty("--coupe", curseur.value + "%"); }
+  curseur.addEventListener("input", couper);
+  couper();
+
+  // Code d'aperçu
+  var champ = document.getElementById("code"), err = document.getElementById("code-erreur");
+  var permis = /^[ABCDEFGHJKMNPQRSTUVWXYZ23456789]{6}$/;
+  champ.addEventListener("input", function () { champ.value = champ.value.toUpperCase().replace(/[^A-Z0-9]/g, "").slice(0, 6); err.hidden = true; });
+  document.getElementById("form-code").addEventListener("submit", function (e) {
+    e.preventDefault();
+    var c = champ.value.replace(/0/g, "O");
+    if (!permis.test(c)) { err.textContent = "Le code fait 6 caractères. Vérifiez le SMS reçu."; err.hidden = false; champ.focus(); return; }
+    location.href = "a/" + c + "/index.html";
+  });
+
+  // Formulaire de contact : prépare un e-mail
+  document.getElementById("form-contact").addEventListener("submit", function (e) {
+    e.preventDefault();
+    var v = function (id) { return document.getElementById(id).value.trim(); };
+    var corps = "Nom : " + v("c-nom") + "\nTéléphone : " + v("c-tel") + "\nEntreprise : " + v("c-entreprise") +
+                "\nFormule : " + v("c-formule") + "\n\n" + v("c-message");
+    document.getElementById("c-ok").hidden = false;
+    location.href = "mailto:contact@robjill.fr?subject=" + encodeURIComponent("Demande de site internet") + "&body=" + encodeURIComponent(corps);
+  });
 })();
 </script>
 </body>
