@@ -56,12 +56,13 @@ em.lueur, h2 em { font-style: normal; background: linear-gradient(100deg, var(--
 .nav nav a:hover { color: var(--blanc); }
 .nav .btn { padding: .65rem 1rem; font-size: .92rem; }
 @media (max-width: 820px) { .nav nav a:not(.btn) { display: none; } }
+@media (max-width: 760px) { .nav nav .btn { display: none; } }
 
 /* Accroche */
 .accroche { position: relative; margin-top: -78px; padding-top: 78px; min-height: min(100vh, 880px); display: grid; align-items: end; overflow: hidden; isolation: isolate; }
 .accroche .photo { position: absolute; inset: 0; z-index: -3; background-size: cover; background-position: center; transform: scale(1.04); animation: zoom 18s ease-in-out infinite alternate; }
 @keyframes zoom { to { transform: scale(1.12); } }
-.accroche::before { content: ""; position: absolute; inset: 0; z-index: -2; background: linear-gradient(180deg, rgba(7,9,13,.55) 0%, rgba(7,9,13,.35) 35%, rgba(7,9,13,.92) 85%, var(--nuit) 100%), radial-gradient(60% 50% at 80% 20%, color-mix(in srgb, var(--accent) 35%, transparent), transparent 70%); }
+.accroche::before { content: ""; position: absolute; inset: 0; z-index: -2; background: linear-gradient(180deg, rgba(7,9,13,.55) 0%, rgba(7,9,13,.35) 35%, rgba(7,9,13,.92) 85%, var(--nuit) 100%), radial-gradient(55% 45% at 85% 15%, color-mix(in srgb, var(--accent) 16%, transparent), transparent 70%); }
 .accroche::after { content: ""; position: absolute; inset: auto 0 0; height: 45%; z-index: -1; background-image: linear-gradient(rgba(255,255,255,.07) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.07) 1px, transparent 1px); background-size: 56px 56px; -webkit-mask-image: linear-gradient(transparent, #000); mask-image: linear-gradient(transparent, #000); }
 .accroche .cadre { padding-block: 3rem clamp(2.5rem, 6vw, 4.5rem); display: grid; gap: 1.4rem; }
 .accroche h1 { font-size: clamp(2.6rem, 7.4vw, 5.6rem); font-weight: 800; max-width: 15ch; }
@@ -69,7 +70,7 @@ em.lueur, h2 em { font-style: normal; background: linear-gradient(100deg, var(--
 .actions { display: flex; flex-wrap: wrap; gap: .7rem; }
 .chiffres { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: .7rem; margin-top: 1rem; }
 .chiffre { padding: 1rem 1.1rem; border-radius: 16px; background: var(--verre); border: 1px solid var(--bord); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); display: grid; gap: .1rem; }
-.chiffre b { font: 700 1.25rem var(--titre); }
+.chiffre b { font: 700 1.05rem/1.25 var(--titre); }
 .chiffre span { color: var(--doux); font-size: .88rem; }
 .chiffre.google b::before { content: "★ "; color: #ffcf4a; }
 
@@ -92,7 +93,8 @@ section { padding-block: clamp(4rem, 9vw, 6.5rem); }
 .tuile.photo-t { grid-column: span 2; grid-row: span 2; }
 .tuile.photo-t img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0; }
 .tuile.photo-t::after { content: ""; position: absolute; inset: 0; background: linear-gradient(transparent 35%, rgba(7,9,13,.92)); z-index: 0; }
-.tuile.photo-t > *:not(img) { position: relative; z-index: 1; }
+.tuile.photo-t > *:not(img):not(.num) { position: relative; z-index: 1; }
+.tuile.photo-t .num { z-index: 1; }
 .tuile.large { grid-column: span 2; }
 .tuile.lueur-t { background: radial-gradient(120% 120% at 100% 0%, color-mix(in srgb, var(--accent) 30%, transparent), var(--nuit-2) 60%); }
 .tuile::before { content: ""; position: absolute; inset: 0; border-radius: inherit; padding: 1px; background: linear-gradient(140deg, color-mix(in srgb, var(--accent) 60%, transparent), transparent 40%); -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor; mask-composite: exclude; pointer-events: none; z-index: 2; }
