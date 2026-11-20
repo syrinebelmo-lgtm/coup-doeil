@@ -64,7 +64,7 @@ em.lueur, h2 em { font-style: normal; background: linear-gradient(100deg, var(--
 @keyframes respire { to { transform: translate(2%, 3%) scale(1.05); } }
 .accroche::after { content: ""; position: absolute; inset: 0; z-index: -1; background-image: linear-gradient(rgba(15,23,42,.05) 1px, transparent 1px), linear-gradient(90deg, rgba(15,23,42,.05) 1px, transparent 1px); background-size: 56px 56px; -webkit-mask-image: radial-gradient(70% 70% at 50% 40%, #000, transparent); mask-image: radial-gradient(70% 70% at 50% 40%, #000, transparent); }
 .accroche .cadre { display: grid; grid-template-columns: 1.05fr .95fr; gap: clamp(2rem, 5vw, 4rem); align-items: center; padding-block: clamp(1.5rem, 4vw, 3rem) clamp(3rem, 7vw, 5rem); }
-@media (max-width: 900px) { .accroche .cadre { grid-template-columns: 1fr; } .visuel { order: -1; } }
+@media (max-width: 900px) { .accroche .cadre { grid-template-columns: 1fr; } }
 .accroche .texte { display: grid; gap: 1.3rem; align-content: center; }
 .accroche h1 { font-size: clamp(2.5rem, 6.4vw, 5rem); font-weight: 800; }
 .accroche p { margin: 0; max-width: 46ch; color: var(--doux); font-size: 1.12rem; }
