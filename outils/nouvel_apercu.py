@@ -344,6 +344,118 @@ def construire(infos, config, code, photos_relatives, apercu=True):
     return page
 
 
+# ---------------------------------------------------------------- modèle futuriste (aperçus prospects)
+MODELE_FUTUR = os.path.join(RACINE, "outils", "modele_futur.html")
+# couleur principale, couleur secondaire, dossier de photos, légendes des photos
+STYLE_FUTUR = {
+    "paysagiste": ("#3ef0a1", "#b6f36b", "jardin", {"jardin": "Jardin entretenu", "parterre": "Haies et bordures taillées", "pelouse": "Pelouse remise en état", "hortensias": "Massifs fleuris", "arrosage": "Arrosage", "plantation": "Plantations"}),
+    "batiment": ("#ffb547", "#ff7a45", "batiment", {"atelier": "L'atelier", "agencement": "Chantier en cours", "mesure": "Mesures au millimètre", "outils": "Notre outillage"}),
+    "menuisier": ("#ffb547", "#ff7a45", "batiment", {"atelier": "L'atelier", "agencement": "Fabrication", "mesure": "Mesures au millimètre", "outils": "Outillage traditionnel"}),
+    "peintre": ("#7aa8ff", "#b48bff", "batiment", {"atelier": "Préparation", "agencement": "Chantier en cours", "mesure": "Finitions soignées", "outils": "Notre matériel"}),
+    "garage": ("#ffd23f", "#ff8a3d", "garage", {"meca": "Intervention sur le pont", "moteur": "Diagnostic moteur", "moteur2": "Entretien", "voiture": "Véhicule révisé", "utilitaire": "Utilitaires aussi"}),
+    "boulangerie": ("#ffb36b", "#ff6f91", "boulangerie", {"etal": "Le pain du jour", "pains": "Nos pains", "boutique": "La boutique", "brioche": "Brioche maison", "muffins": "Gourmandises"}),
+    "restaurant": ("#ff6a4d", "#ffc15e", "restaurant", {"pizza": "Sorti du four", "pate": "Pâte maison", "terrasse": "La terrasse", "salle": "La salle"}),
+    "beaute": ("#ff8fc7", "#b58cff", "beaute", {"salon": "Le salon", "coupe": "Coupe sur mesure", "ciseaux": "Le geste précis"}),
+}
+FAQ_COMMUNE = [
+    ("Le devis est-il gratuit ?", "Oui, toujours gratuit et sans engagement. Vous savez exactement ce que vous payez avant que l'on commence."),
+    ("Dans quel secteur intervenez-vous ?", "{zone}. Pour une adresse un peu plus loin, appelez-nous : on trouve souvent une solution."),
+    ("Comment vous joindre le plus vite ?", "Par téléphone ou WhatsApp au {tel}. Vous pouvez aussi remplir le formulaire, on vous rappelle dans la journée."),
+]
+
+
+def construire_futur(infos, config, photos_relatives, apercu=True):
+    m = METIERS[infos["metier_cle"]]
+    cle_style = infos["metier"] if infos["metier"] in STYLE_FUTUR else infos["metier_cle"]
+    accent, accent2, dossier_photos, legendes = STYLE_FUTUR.get(cle_style, STYLE_FUTUR["batiment"])
+    ville = infos["ville"] or "votre secteur"
+    tel = infos["tel"]
+    chiffres_tel = re.sub(r"[^\d+]", "", tel)
+    tel_lien = "+33" + chiffres_tel[1:] if chiffres_tel.startswith("0") else chiffres_tel
+    wa = "https://wa.me/%s" % tel_lien.lstrip("+")
+    zone = "%s et 25 km autour" % ville
+
+    if photos_relatives:
+        photos = [(p, "Réalisation") for p in photos_relatives]
+    else:
+        base = "../../photos/%s/" % dossier_photos
+        photos = [(base + nom + ".jpg", leg) for nom, leg in legendes.items()]
+    hero = photos[0][0]
+
+    titre = infos.get("titre") or m["titre"]
+    mots = titre.split()
+    coupe = max(1, len(mots) - 2)
+    titre_html = "%s <em class=\"lueur\">%s</em>" % (e(" ".join(mots[:coupe])), e(" ".join(mots[coupe:])))
+    ts = m["titre_services"].split()
+    titre_services_html = "%s <em>%s</em>" % (e(" ".join(ts[:-2])), e(" ".join(ts[-2:])))
+
+    chiffres = [("%s" % m["engagements"][0], "notre engagement"), (ville, "et alentours"), ("Rappel rapide", "par téléphone ou WhatsApp")]
+    blocs = ['<div class="chiffre"><b>%s</b><span>%s</span></div>' % (e(a), e(b)) for a, b in chiffres]
+    try:
+        avis = int(float(infos.get("avis") or 0)); note = float(str(infos.get("note") or 0).replace(",", "."))
+    except ValueError:
+        avis, note = 0, 0
+    if avis >= 3 and note >= 4:  # on n'affiche une note que si elle est réelle et bonne
+        blocs.insert(0, '<div class="chiffre google"><b>%s / 5</b><span>%d avis Google</span></div>' % (("%.1f" % note).replace(".", ","), avis))
+
+    services = m["services"]
+    bento = []
+    for i, (t, d) in enumerate(services):
+        num = '<span class="num">0%d</span>' % (i + 1)
+        if i == 0:
+            bento.append('<article class="tuile photo-t"><img src="%s" alt="" loading="lazy">%s<h3>%s</h3><p>%s</p></article>' % (e(photos[min(1, len(photos) - 1)][0]), num, e(t), e(d)))
+        elif i == 1:
+            bento.append('<article class="tuile lueur-t">%s<h3>%s</h3><p>%s</p></article>' % (num, e(t), e(d)))
+        elif i == len(services) - 1:
+            bento.append('<article class="tuile large">%s<h3>%s</h3><p>%s</p></article>' % (num, e(t), e(d)))
+        else:
+            bento.append('<article class="tuile">%s<h3>%s</h3><p>%s</p></article>' % (num, e(t), e(d)))
+    defile = "".join("<span>%s</span>" % e(t) for t, _ in services) * 2 + "".join("<span>%s</span>" % e(x) for x in m["engagements"]) * 2
+    carrousel = "".join('<figure><img src="%s" alt="%s" loading="lazy"><figcaption>%s</figcaption></figure>' % (e(p), e(l), e(l)) for p, l in photos)
+    faq = "".join("<details><summary>%s</summary><p>%s</p></details>" % (e(q), e(r.format(zone=zone, tel=tel))) for q, r in FAQ_COMMUNE)
+
+    bandeau = ""
+    if apercu:
+        sujet = urllib.parse.quote("Mon site %s" % infos["nom"])
+        bandeau = ('<aside class="apercu" aria-label="Aperçu privé"><div class="cadre">'
+                   '<span><b>Aperçu privé</b> préparé pour %s par %s · %s %s</span>'
+                   '<span style="display:flex;gap:.6rem;align-items:center"><a href="mailto:%s?subject=%s">Ce site me plaît</a>'
+                   '<button type="button" id="fermer-apercu">Masquer</button></span></div></aside>') % (
+            e(infos["nom"]), e(config["marque"]), e(config["prix_site"]), e(config.get("abonnement", "")),
+            e(config["email_vendeur"]), sujet)
+
+    cta = m.get("cta", "Demander un devis gratuit")
+    remplacements = {
+        "ACCENT": accent, "ACCENT2": accent2,
+        "NOM": e(infos["nom"]), "INITIALE": e((infos["nom"].strip() or "?")[0].upper()),
+        "METIER": e(m["titre_metier"].lower()), "METIER_TITRE": e(m["titre_metier"]), "VILLE": e(ville),
+        "ACCROCHE": e(m["accroche"].format(ville=ville)), "TITRE_HTML": titre_html,
+        "STATUT": "Disponible cette semaine", "TEL": e(tel), "TEL_LIEN": e(tel_lien), "WA_LIEN": e(wa),
+        "PHOTO_HERO": e(hero), "CHIFFRES": "".join(blocs), "DEFILE": defile,
+        "TITRE_SERVICES_HTML": titre_services_html, "INTRO_SERVICES": e(m["intro_services"]), "BENTO": "".join(bento),
+        "SURTITRE_GALERIE": e(m.get("surtitre_galerie", "Réalisations")), "TITRE_GALERIE": e(m.get("titre_galerie", "Quelques chantiers récents")),
+        "CARROUSEL": carrousel,
+        "TITRE_ETAPES": e(m.get("titre_etapes", "De votre appel à la fin du chantier")),
+        "ETAPES": "".join("<li><h3>%s</h3><p>%s</p></li>" % (e(t), e(d)) for t, d in m.get("etapes", ETAPES)),
+        "FAQ": faq, "ZONE": e(zone),
+        "LIGNE_DIRIGEANT": ('<div><dt>Votre interlocuteur</dt><dd>%s</dd></div>' % e(infos["dirigeant"])) if infos.get("dirigeant") else "",
+        "OPTIONS_DEVIS": "".join("<option>%s</option>" % e(o) for o in m["options"]),
+        "CTA": e(cta), "CTA_COURT": e("Devis" if "devis" in cta.lower() else cta.split()[0]),
+        "CTA_FORM": e(m.get("cta_form", "Envoyer ma demande de devis")),
+        "TITRE_CONTACT": e(m.get("titre_contact", "Parlons de votre projet")),
+        "INTRO_CONTACT": e(m.get("intro_contact", "Réponse rapide, devis gratuit et sans engagement.")),
+        "ANNEE": str(dt.date.today().year), "BANDEAU_APERCU": bandeau,
+    }
+    with open(MODELE_FUTUR, encoding="utf-8") as f:
+        page = f.read()
+    for cle, valeur in remplacements.items():
+        page = page.replace("{{%s}}" % cle, valeur)
+    reste = re.findall(r"\{\{[A-Z_0-9]+\}\}", page)
+    if reste:
+        sys.exit("Modèle incomplet, champs non remplis : %s" % ", ".join(sorted(set(reste))))
+    return page
+
+
 def publier_git(message):
     if not os.path.isdir(os.path.join(RACINE, ".git")):
         return "pas de dépôt Git : site créé en local seulement (voir LISEZMOI.md pour le mettre en ligne)"
@@ -373,6 +485,8 @@ def main():
     p.add_argument("--modele-demo", metavar="DOSSIER", help="(interne) crée une page de démo dans modeles/DOSSIER")
     p.add_argument("--exemple", metavar="DOSSIER", help="(interne) crée une réalisation fictive dans realisations/DOSSIER")
     p.add_argument("--sans-publier", action="store_true", help="ne pas publier sur GitHub")
+    p.add_argument("--code", help="réutiliser un code existant (pour refaire un aperçu déjà envoyé)")
+    p.add_argument("--ancien-modele", action="store_true", help="utiliser l'ancien modèle clair")
     args = p.parse_args()
 
     config = charger_config()
@@ -380,7 +494,8 @@ def main():
     if args.prospect:
         ligne, metier = lire_prospect(args.prospect)
         infos = {"nom": joli_nom(ligne["entreprise"]), "ville": ligne.get("ville", ""), "tel": ligne.get("telephone", ""),
-                 "dirigeant": ligne.get("dirigeant", ""), "adresse": "", "metier": metier}
+                 "dirigeant": ligne.get("dirigeant", ""), "adresse": "", "metier": metier,
+                 "avis": ligne.get("avis_google", ""), "note": ligne.get("note_google", "")}
     for cle in ("nom", "ville", "tel", "dirigeant", "adresse", "metier", "titre"):
         if getattr(args, cle):
             infos[cle] = getattr(args, cle)
@@ -401,7 +516,7 @@ def main():
         code = None
     else:
         existants = set(os.listdir(os.path.join(RACINE, "a"))) if os.path.isdir(os.path.join(RACINE, "a")) else set()
-        code = nouveau_code(existants)
+        code = args.code.upper() if args.code else nouveau_code(existants)
         dossier = os.path.join(RACINE, "a", code)
     os.makedirs(dossier, exist_ok=True)
 
@@ -415,7 +530,10 @@ def main():
             shutil.copy(src, os.path.join(dossier, "photos", nom))
             photos_relatives.append("photos/" + nom)
 
-    page = construire(infos, config, code, photos_relatives, apercu=not (args.modele_demo or args.exemple))
+    if args.modele_demo or args.exemple or args.ancien_modele:
+        page = construire(infos, config, code, photos_relatives, apercu=not (args.modele_demo or args.exemple))
+    else:
+        page = construire_futur(infos, config, photos_relatives)
     with open(os.path.join(dossier, "index.html"), "w", encoding="utf-8") as f:
         f.write(page)
 
